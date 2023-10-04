@@ -1,0 +1,58 @@
+<template>
+  <div class="container-fluid g-0 text-center">
+
+    <div class="row gx-0  ">
+      <img src="@/assets/fondoLogin.jpg" class="object-fit-contain z-0 position-absolute " alt="Login">
+    </div>
+    <div class="container floor z-1 position-absolute ms-2 ">
+
+      <div class="row align-items-center">
+        <div class="col-4 ">
+          <div class="  d-flex justify-content-center align-items-center"
+            style="  background-color: red;">
+            hola</div>
+        </div>
+        <div class="col-4 ">
+          <div class="  d-flex justify-content-center align-items-center"
+            style="  background-color: red;">
+            aca esta</div>
+        </div>
+        <div class="col-4 ">
+          <div class=" d-flex justify-content-center align-items-center"
+            style=" background-color: red;">
+            3</div>
+        </div>
+      </div>
+
+      <div class="row mt-2 ">
+        <div class="col-4 ">
+          <div class="  d-flex justify-content-center align-items-center"
+            style="  background-color: red;">
+            hola</div>
+        </div>
+        <div class="col-4 ">
+          <div class="  d-flex justify-content-center align-items-center"
+            style="  background-color: red;">
+            aca esta</div>
+        </div>
+        <div class="col-4 ">
+          <div class="  d-flex justify-content-center align-items-center"
+            style=" background-color: red;">
+            3</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<script setup>
+</script>
+
+<style scoped>
+.floor {
+  height: 100%;
+  background-color: antiquewhite;
+}
+
+</style>
