@@ -36,9 +36,7 @@
 
 <style scoped>
 
- 
   .fondo {
-   /*  background:#2c45b4; */
     background-image: url("@/assets/fondoLogin.jpg");
     top: 0;
     bottom: 0;
