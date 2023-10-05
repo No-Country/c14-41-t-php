@@ -53,7 +53,7 @@
     z-index: 100;
   }
   .login {
-    width: 250px;
+    width: 150px;
     height: 100%;
     margin: 0px auto;
     margin-top: 0px;

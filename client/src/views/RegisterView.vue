@@ -10,13 +10,13 @@
 
           <div class="row ">
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-2">
                 <input type="email" class="form-control shadow" id="floatingInput" placeholder="nombre@gmail.com">
                 <label for="floatingInput">Email</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-2">
                 <input type="password" class="form-control shadow" id="floatingPassword" placeholder="contraseña">
                 <label for="floatingPassword">Contraseña</label>
               </div>
@@ -25,13 +25,13 @@
 
           <div class="row ">
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="name" placeholder="Nombre">
                 <label for="name">Nombre</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Apellido">
                 <label for="floatingPassword">Apellido</label>
               </div>
@@ -40,13 +40,13 @@
 
           <div class="row ">
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="floatingInput" placeholder="Teloefono">
                 <label for="floatingInput">Telefono</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Calle">
                 <label for="floatingPassword">Calle</label>
               </div>
@@ -55,20 +55,20 @@
 
           <div class="row ">
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="floatingInput" placeholder="Altura">
                 <label for="floatingInput">Altura</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
-              <div class="form-floating mb-3 mt-3">
+              <div class="form-floating mb-1 mt-1">
                 <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Ciudad">
                 <label for="floatingPassword">Ciudad</label>
               </div>
             </div>
           </div>
 
-          <div class="mb-5 mt-0 ingresar">
+          <div class="mb-5 mt-1  ingresar">
             <div class="btn btn-success shadow"><v-icon class="me-3" name="gi-archive-register" />Registrar</div>
           </div>
           <div class="row"></div>
@@ -102,8 +102,8 @@
   }
 
   .login {
-    width: 250px;
-    height: 100%;
+    width: 150px;
+    height: 80%;
     margin: 0px auto;
     margin-top: 0px;
     top: 20px;
