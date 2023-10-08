@@ -2,76 +2,172 @@
   <div class="fondo">
     <div class="form">
       <form class="d-flex-rows">
-        <div style="opacity: 0.60;">
-          <img class="login" src="@/assets/logoCo.webp" alt="logo">
-        </div>
 
         <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-sm-12 col-md-8">
+              <div class="row p-4 " style="background: rgb(182, 105, 17);">
 
-          <div class="row ">
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-2">
-                <input type="email" class="form-control shadow" id="floatingInput" placeholder="nombre@gmail.com">
-                <label for="floatingInput">Email</label>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-2">
-                <input type="password" class="form-control shadow" id="floatingPassword" placeholder="contraseña">
-                <label for="floatingPassword">Contraseña</label>
+                <div class="col-12">
+                  <h4 class="head-sesion">Registrarse</h4>
+                  <h6 class="head-sesion">¿ya tenés cuenta? <a href="">Iniciar Sesión</a></h6>
+                  <div class="form-floating mb-2 mt-3">
+                    <input type="texto" class="form-control shadow" id="floatingInput" placeholder="name@example.com">
+                    <label for="floatingInput">
+                      <div class="row">
+                        <div class="col">
+                          <v-icon name="bi-pencil" />
+                        </div>
+                        Nombre
+                      </div>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2 ">
+                    <input v-model="password" type="text" class="form-control shadow" id="floatingLastname"
+                      placeholder="Password">
+                    <label for="floatingLastname">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Apellido
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="text" class="form-control shadow" id="floatingStree"
+                      placeholder="Password">
+                    <label for="floatingStree">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Calle
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="text" class="form-control shadow" id="floatingHeight"
+                      placeholder="Password">
+                    <label for="floatingHeight">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Altura
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="text" class="form-control shadow" id="floatingCity"
+                      placeholder="Password">
+                    <label for="floatingCity">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Ciudad
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="text" class="form-control shadow" id="floatingPhone"
+                      placeholder="Password">
+                    <label for="floatingPhone">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Telefono
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="email" class="form-control shadow" id="floatingEmail"
+                      placeholder="Password">
+                    <label for="floatingEmail">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Email
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-2">
+                    <input v-model="password" type="password" class="form-control shadow" id="floatingPassword"
+                      placeholder="Password">
+                    <label for="floatingPassword">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Contraseña
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 ">
+                  <div class="form-floating mb-3 ">
+                    <input v-model="password" type="password" class="form-control shadow" id="floatingRePassword"
+                      placeholder="Password">
+                    <label for="floatingRePassword">
+                      <label for="floatingInput">
+                        <div class="row">
+                          <div class="col">
+                            <v-icon name="bi-pencil" />
+                          </div>
+                          Repetir contraseña
+                        </div>
+                      </label>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="mb-5 mt-3 ingresar">
+                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">registrarse</button>
+                </div>
+                <div class="row"></div>
               </div>
             </div>
           </div>
 
-          <div class="row ">
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="name" placeholder="Nombre">
-                <label for="name">Nombre</label>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Apellido">
-                <label for="floatingPassword">Apellido</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row ">
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="floatingInput" placeholder="Teloefono">
-                <label for="floatingInput">Telefono</label>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Calle">
-                <label for="floatingPassword">Calle</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="row ">
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="floatingInput" placeholder="Altura">
-                <label for="floatingInput">Altura</label>
-              </div>
-            </div>
-            <div class="col-12 col-md-6">
-              <div class="form-floating mb-1 mt-1">
-                <input type="text" class="form-control shadow" id="floatingPassword" placeholder="Ciudad">
-                <label for="floatingPassword">Ciudad</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="mb-5 mt-1  ingresar">
-            <div class="btn btn-success shadow"><v-icon class="me-3" name="gi-archive-register" />Registrar</div>
-          </div>
-          <div class="row"></div>
         </div>
       </form>
     </div>
@@ -79,35 +175,57 @@
 </template>
 
 <script setup>
+  // import { ref, watchEffect } from 'vue'
+
+  // let password = ref('') //tiene que hacer referencia al storage "mas adelante"
+  // let chageIcon = ref(true)
+  // let showEye = ref(false)
+  // let showEyeClose = ref(false)
+  // let type = ref('password')
+
+  // watchEffect(() => {
+
+  //   if (password.value != '' && showEye.value != true) {
+  //     showEyeClose = true
+  //   } else {
+  //     showEyeClose = false
+  //   }
+
+  // })
+
+  // const showPassword = (() => {
+  //   chageIcon.value = !chageIcon.value
+  //   type.value = 'text'
+  //   showEye.value = true
+  // })
+
+  // const noPassword = (() => {
+  //   chageIcon.value = !chageIcon.value
+  //   type.value = 'password'
+  //   showEye.value = false
+  // })
+
 </script>
 
 <style scoped>
-  .fondo {
-    background-image: url("@/assets/fondoRegister.jpg");
-    top: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-
+  .head-sesion {
+    color: #faf9f9;
   }
 
-  .img {
-    position: fixed;
-    width: 100%;
-    height: 100vh;
+  a:link {
+    text-decoration: none;
+  }
+
+  a {
+    color: #fbaf0a;
   }
 
   .form {
     z-index: 100;
   }
 
-  .login {
-    width: 150px;
-    height: 80%;
-    margin: 0px auto;
-    margin-top: 0px;
-    top: 20px;
-    display: block;
+  .ico-btn {
+    cursor: pointer;
   }
 
   .container {
@@ -132,4 +250,5 @@
       width: 80%;
     }
   }
-</style>
+
+  </style>

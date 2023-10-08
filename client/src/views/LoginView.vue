@@ -5,7 +5,7 @@
       
         <div class="container">
           <div class="row justify-content-center">
-            <div class="col-8">
+            <div class="col-sm-12 col-md-8">
               <div class="row p-4 " style="background: rgb(182, 105, 17);">
     
                 <div class="col-12">
@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="mb-5 mt-3 ingresar">
-                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">Entrar</button>
+                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">Iniciar sesio</button>
                 </div>
                 <div class="row"></div>
               </div>
