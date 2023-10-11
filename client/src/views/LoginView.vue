@@ -44,7 +44,7 @@
                 </div>
 
                 <div class="mb-5 mt-3 ingresar">
-                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">Iniciar sesio</button>
+                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">Iniciar sesion</button>
                 </div>
                 <div class="row"></div>
               </div>
