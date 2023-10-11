@@ -50,6 +50,30 @@ const useAuth = defineStore('auth',{
       console.log('Token en Storage_register', this.feedback)
     },
 
+
+    async login( email, password){
+
+      // await axios.post('login',{
+      //   email,
+      //   password
+      // })
+      // .then(response =>{
+        
+      //   // if(response.data.status){
+      //   //   //Verdadero
+      //   //   this.token = response.data.token.token
+      //   //   this.User = response.data.user[0]
+      //   //   this.statusUser = true
+      //   // }
+        
+      // })
+      // .catch((error)=>{
+      //   console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
+      // })  
+      
+      console.log('Respnse del back al front',email, password)
+    },
+
     notification(messaje){
         this.feedback = messaje
         setTimeout(()=>{
@@ -57,30 +81,6 @@ const useAuth = defineStore('auth',{
         },4000)
         return
       },
-    
-
-    async login( email, password){
-
-      await axios.post('login',{
-        email,
-        password
-      })
-      .then(response =>{
-        
-        // if(response.data.status){
-        //   //Verdadero
-        //   this.token = response.data.token.token
-        //   this.User = response.data.user[0]
-        //   this.statusUser = true
-        // }
-        console.log('Respnse del back al front',response)
-
-      })
-      .catch((error)=>{
-        console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
-      })  
-      
-    },
     
 
   }
