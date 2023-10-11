@@ -363,7 +363,6 @@
 </script>
 
 <style scoped>
-<<<<<<< HEAD
   .head-sesion {
     color: #faf9f9;
   }
@@ -375,41 +374,14 @@
   a {
     color: #fbaf0a;
   }
-=======
-.fondo {
-  background-image: url("@/assets/FondoRegister.jpg");
-  top: 0;
-  bottom: 0;
-  width: 100vw;
-  height: 100vh;
-
-}
-
-.img {
-  position: fixed;
-  width: 100%;
-  height: 100vh;
-}
->>>>>>> ebdd576eafdc6f9d6f4d2c54dcf2ae56c6679f4c
 
 .form {
   z-index: 100;
 }
 
-<<<<<<< HEAD
   .ico-btn {
     cursor: pointer;
   }
-=======
-.login {
-  width: 150px;
-  height: 80%;
-  margin: 0px auto;
-  margin-top: 0px;
-  top: 20px;
-  display: block;
-}
->>>>>>> ebdd576eafdc6f9d6f4d2c54dcf2ae56c6679f4c
 
 .container {
   align-content: center;
@@ -432,10 +404,5 @@
     margin-bottom: 5vh;
     width: 80%;
   }
-<<<<<<< HEAD
-
-  </style>
-=======
 }
 </style>
->>>>>>> ebdd576eafdc6f9d6f4d2c54dcf2ae56c6679f4c

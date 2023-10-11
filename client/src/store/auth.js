@@ -1,6 +1,6 @@
-import { defineStore } from 'pinia'
+import axios from '@/plugins/axios';
+import { defineStore } from 'pinia';
 
-<<<<<<< HEAD
 export const useAuth = defineStore('auth',{
   state: ()=>{
     return {
@@ -10,20 +10,55 @@ export const useAuth = defineStore('auth',{
   },
 
   actions:{
-    //TODO manejo de rutas peticiones a la API
-  }
-=======
-export const useAuth = defineStore('auth', {
-    state: () => {
-        return {
-            token: null,
-            user: {}
-        }
+    async register (username, email, password){
+      this.reset()
+
+      await axios.post('register',{
+        username,
+        email,
+        password
+      })
+      .then(response =>{
+          console.log('La data del Back', response.data)
+        //   if(response.data.status){
+        //   this.token = response.data.token.token
+        //   this.User = response.data.user[0]
+        //   this.statusUser = true
+        // }
+
+      })
+      .catch((error)=>{
+        console.log('Error del front _ auth', error)
+        this.statusUser = error.response.data.status
+      }) 
+      
+      console.log('Token en Storage_register', this.token)
     },
 
-    actions: {
-        //TODO manejo de rutas peticiones a la API
-    }
->>>>>>> ebdd576eafdc6f9d6f4d2c54dcf2ae56c6679f4c
+    async login( email, password){
+
+      await axios.post('login',{
+        email,
+        password
+      })
+      .then(response =>{
+        
+        // if(response.data.status){
+        //   //Verdadero
+        //   this.token = response.data.token.token
+        //   this.User = response.data.user[0]
+        //   this.statusUser = true
+        // }
+        console.log('Respnse del back al front',response)
+
+      })
+      .catch((error)=>{
+        console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
+      })  
+      
+    },
+    
+
+  }
 
 })
