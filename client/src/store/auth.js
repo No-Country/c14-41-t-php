@@ -1,22 +1,36 @@
 import axios from '@/plugins/axios';
 import { defineStore } from 'pinia';
 
-export const useAuth = defineStore('auth',{
+const useAuth = defineStore('auth',{
   state: ()=>{
     return {
       token:null,
-      user:{}
+      user:{},
+      feedback:''
     }
   },
 
   actions:{
-    async register (username, email, password){
-      this.reset()
-
+    async register (terminos, name, email, password, tel, city, altura, street, lastname ){
+      
+      if(terminos == false){
+        this.feedback =" Acepatar términos y condiciones para registrarse"
+        setTimeout(()=>{
+          this.feedback=''
+        },4000)
+        return
+      }
+      
       await axios.post('register',{
-        username,
+        name,
+        lastname,
+        street,
+        altura,
+        city,
+        tel,
         email,
-        password
+        password,
+        terminos
       })
       .then(response =>{
           console.log('La data del Back', response.data)
@@ -32,8 +46,18 @@ export const useAuth = defineStore('auth',{
         this.statusUser = error.response.data.status
       }) 
       
-      console.log('Token en Storage_register', this.token)
+      
+      console.log('Token en Storage_register', this.feedback)
     },
+
+    notification(messaje){
+        this.feedback = messaje
+        setTimeout(()=>{
+          this.feedback=''
+        },4000)
+        return
+      },
+    
 
     async login( email, password){
 
@@ -62,3 +86,5 @@ export const useAuth = defineStore('auth',{
   }
 
 })
+
+export default useAuth

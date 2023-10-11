@@ -180,7 +180,8 @@
                   </label>
                 </div>
                 <div class="mb-5 mt-3 ingresar">
-                  <button class="btn btn-info shadow rounded-pill" style="width:10em;">registrarse</button>
+                  <button @click.prevent="createUser()" class="btn btn-info shadow rounded-pill" style="width:10em;">registrarse</button> <br>
+                  <span>{{store.feedback }}</span>
                 </div>
                 <div class="row"></div>
               </div>
@@ -195,6 +196,10 @@
 
 <script setup>
   import { ref, watch } from 'vue'
+  import useAuth from '@/store/auth'
+
+  //uso de funciones en el store
+  const store = useAuth()
 
   //expreiones regulares
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -222,9 +227,10 @@
   let errorEmail = ref(false)
   let errorPassword = ref(false)
   let errorRePassword = ref (false)
-  
 
-  
+
+
+  //Variables en los inputs
   const name = ref('')
   const lastName = ref('')
   const street = ref('')
@@ -235,16 +241,18 @@
   const password = ref('')
   const confirmPassword = ref('')
   const terminos = ref(false)
+
   
+  //watch para controlar las validaciones
   watch(name, (newName) => {
     isNameValid.value = nameRegex.test(newName);
 
     if (isNameValid.value == true && name.value != '') {
-      errorName = isNameValid.value == true && name.value != ''
+      errorName.value = isNameValid.value == true && name.value != ''
     }
 
     if (name.value == '') {
-      errorName = false
+      errorName.value = false
       isNameValid.value = true
     }
 
@@ -254,11 +262,11 @@
     isLastNameValid.value = nameRegex.test(newLastName);
 
     if(isLastNameValid.value == true && lastName.value !=''){
-      errorLastName = isLastNameValid.value == true && lastName.value !=''
+      errorLastName.value = isLastNameValid.value == true && lastName.value !=''
     }
 
     if(lastName.value == ''){
-      errorLastName = false
+      errorLastName.value = false
       isLastNameValid.value = true
     }
 
@@ -268,11 +276,11 @@
     isStreetValid.value = noCaracterEspecial.test(newStreet);
 
     if(isStreetValid.value == true && street.value !=''){
-      errorStreet = isStreetValid.value == true && street.value !=''
+      errorStreet.value = isStreetValid.value == true && street.value !=''
     }
 
     if(street.value == ''){
-      errorStreet = false
+      errorStreet.value = false
       isStreetValid.value = true
     }
 
@@ -282,11 +290,11 @@
     isAlturaValid.value = numerosRex.test(newAltura);
 
     if(isAlturaValid.value == true && altura.value !=''){
-      errorAltura = isAlturaValid.value == true && altura.value !=''
+      errorAltura.value = isAlturaValid.value == true && altura.value !=''
     }
 
     if(altura.value == ''){
-      errorAltura = false
+      errorAltura.value = false
       isAlturaValid.value = true
     }
   });
@@ -295,11 +303,11 @@
     isCityValid.value = noCaracterEspecial.test(newCity);
     
     if(isCityValid.value == true && city.value !=''){
-      errorCity = isCityValid.value == true & city.value !=''
+      errorCity.value = isCityValid.value == true & city.value !=''
     }
     
     if(city.value == ''){
-      errorCity = false
+      errorCity.value = false
       isCityValid.value = true
     }
   });
@@ -308,11 +316,11 @@
     isTelValid.value = numerosRex.test(newTel);
     
     if(isTelValid.value == true && tel.value !=''){
-      errorTel = isTelValid.value == true & tel.value !=''
+      errorTel.value = isTelValid.value == true & tel.value !=''
     }
     
     if(tel.value == ''){
-      errorTel = false
+      errorTel.value = false
       isTelValid.value = true
     }
   });
@@ -321,11 +329,11 @@
     isEmailValid.value = emailRegex.test(newEmail);
 
     if(isEmailValid.value == true && email.value !=''){
-      errorEmail = isEmailValid.value == true & email.value !=''
+      errorEmail.value = isEmailValid.value == true & email.value !=''
     }
     
     if(email.value == ''){
-      errorEmail = false
+      errorEmail.value = false
       isEmailValid.value = true
     }
   });
@@ -335,11 +343,11 @@
     isPasswordValid.value = longRegex.test(newPassword);
 
     if(isPasswordValid.value == true && password.value !=''){
-      errorPassword = isPasswordValid.value == true & password.value !=''
+      errorPassword.value = isPasswordValid.value == true & password.value !=''
     }
     
     if(password.value == ''){
-      errorPassword = false
+      errorPassword.value = false
       isPasswordValid.value = true
     }
   });
@@ -348,17 +356,74 @@
     isRepasswordValid.value = password.value === newRePassword
 
     if(isRepasswordValid.value == true && confirmPassword.value !=''){
-      errorRePassword = isRepasswordValid.value == true & confirmPassword.value != ''
+      errorRePassword.value = isRepasswordValid.value == true & confirmPassword.value != ''
     }
 
     if(confirmPassword.value == ''){
-      errorRePassword = false
+      errorRePassword.value = false
       isRepasswordValid.value= true
     }
 
   })
 
+  
+const createUser = async()=> {
+  const msg = "Alguno de los campos ingresados no es válido"
 
+  if(name.value !='' && lastName.value !='' && email.value !='' && password.value !='' && confirmPassword.value != ''){
+    if (name.value != '' && !errorName.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (lastName.value != '' && !errorLastName.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (street.value != '' && !errorStreet.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (altura.value != '' && !errorAltura.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (city.value != '' && !errorCity.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (tel.value != '' && !errorTel.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (email.value != '' && !errorEmail.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (password.value != '' && !errorPassword.value) {
+      store.notification(msg)
+      return
+    }
+
+    if (confirmPassword.value != '' && !errorRePassword.value) {
+      store.notification(msg)
+      return
+    }
+  }else{
+    store.notification('Nombre, Apellido, Email, contraseña y re-confirmacion de contraseña son campos obligatorios')
+    return
+  }
+
+  await store.register(terminos.value, name.value, email.value, password.value, tel.value, city.value, altura.value, street.value, lastName.value)
+
+
+}
 
 </script>
 
