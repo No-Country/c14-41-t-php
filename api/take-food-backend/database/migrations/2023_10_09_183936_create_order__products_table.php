@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('order__products', function (Blueprint $table) {
+            $table->id();
             $table->integer('id_order');
             $table->integer('id_product');
-            $table->integer('cantidad');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

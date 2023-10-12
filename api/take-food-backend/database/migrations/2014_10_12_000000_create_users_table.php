@@ -15,7 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('last_name');
-            $table->unsignedBigInteger('phone');
+            $table->unsignedBigInteger('phone');//
+            $table->string('city');
+            $table->string('street');
+            $table->string('street_number');
             $table->integer('rol');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

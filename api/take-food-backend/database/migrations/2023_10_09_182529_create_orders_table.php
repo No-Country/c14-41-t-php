@@ -16,6 +16,8 @@ return new class extends Migration
             $table->integer('id_cliente');
             $table->unsignedBigInteger('total');
             $table->timestamps();
+            $table->string('observation')->nullable();
+            $table->string('status',1);
         });
     }
 

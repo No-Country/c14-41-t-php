@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('description');
             $table->float('price');
             $table->integer('id_category');
+            $table->string('image');
+            $table->float('cooking_time');
+            $table->boolean('avaibility');
             $table->timestamps();
         });
     }
