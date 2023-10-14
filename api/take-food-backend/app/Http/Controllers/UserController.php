@@ -49,34 +49,13 @@ class UserController extends Controller
         ], 201);
     }
 
-    // public function loginUser(UserRequest $request)
-    // {
-    //     if(!Auth::attempt($request->only(['email', 'password'])))
-    //     {
-    //         return response()->json([
-    //             'status' =>false,
-    //             'message' => 'email y/o contraseña incorrectos'
-    //         ], 401);
-    //     }
-
-    //     $user = User::where('email', $request->email)->first();
-
-    //     return response()->json([
-    //         'status' => true,
-    //         'message' => 'Usuario logeado correctamente',
-    //         'token' => $user->createToken("API TOKEN")->plainTextToken
-    //     ], 200);
-
-
-    // }
     public function loginUser(UserRequest $request)
     {
-        $credentials = $request->only(['email', 'password']);
-
-        if (!Auth::attempt($credentials)) {
+        if(!Auth::attempt($request->only(['email', 'password'])))
+        {
             return response()->json([
-                'status' => false,
-                'message' => 'email and/or password are incorrect'
+                'status' =>false,
+                'message' => 'email y/o contraseña incorrectos'
             ], 401);
         }
 
@@ -84,9 +63,11 @@ class UserController extends Controller
 
         return response()->json([
             'status' => true,
-            'message' => 'User logged in successfully',
+            'message' => 'Usuario logeado correctamente',
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ], 200);
+
+
     }
 
     /**
