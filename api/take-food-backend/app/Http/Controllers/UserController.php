@@ -5,6 +5,7 @@ use App\Http\Requests\UserRequest;
 use App\Models\User;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -29,10 +30,63 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
-        User::create($request->all());
+        $user = User::create($request->all());
+
         return response()->json([
-            "success" => true
+            "success" => true,
+            "message" => "Usuario creado exitosamente",
+            'token' => $user->createToken("API TOKEN")->plainTextToken
         ], 201);
+    }
+
+    public function createUser(UserRequest $request)
+    {
+        $user = User::create($request->all());
+        return response()->json([
+            "success" => true,
+            "message" => "Usuario creado exitosamente",
+            'token' => $user->createToken("API TOKEN")->plainTextToken
+        ], 201);
+    }
+
+    // public function loginUser(UserRequest $request)
+    // {
+    //     if(!Auth::attempt($request->only(['email', 'password'])))
+    //     {
+    //         return response()->json([
+    //             'status' =>false,
+    //             'message' => 'email y/o contraseña incorrectos'
+    //         ], 401);
+    //     }
+
+    //     $user = User::where('email', $request->email)->first();
+
+    //     return response()->json([
+    //         'status' => true,
+    //         'message' => 'Usuario logeado correctamente',
+    //         'token' => $user->createToken("API TOKEN")->plainTextToken
+    //     ], 200);
+
+
+    // }
+    public function loginUser(UserRequest $request)
+    {
+        $credentials = $request->only(['email', 'password']);
+
+        if (!Auth::attempt($credentials)) {
+            return response()->json([
+                'status' => false,
+                'message' => 'email and/or password are incorrect'
+            ], 401);
+        }
+
+        $user = User::where('email', $request->email)->first();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'User logged in successfully',
+            'token' => $user->createToken("API TOKEN")->plainTextToken
+        ], 200);
     }
 
     /**
