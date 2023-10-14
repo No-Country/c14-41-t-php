@@ -1,5 +1,5 @@
 <template>
-  <div class="row navbar gx-0 p-2 bg-dark fixed-top">
+  <div class="row navbar gx-0 p-2 bg-dark navbar-sticky">
     <div class="col-4 align-self-center">
       <div class="row">
         <div class="col">
@@ -12,7 +12,9 @@
 
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Colocar logo</h5>
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+            <img class="offcanvas-logo" src="@/assets/takefoodlogo.png" alt="takefood logo">
+          </h5>
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -53,9 +55,10 @@
     </div>
   </div>
 
+
   <div class="banner">
     <div class="banner-description">
-      <h1>Bienvenido a TakeFood</h1>
+      <h1>Bienvenido a <span class="takefood-text">TakeFood</span></h1>
       <h2>Disfruta las delicias que tenemos para vos</h2>
     </div>
   </div>
@@ -67,24 +70,46 @@ import UserLoged from '@/components/UserLoged.vue';
 </script>
 
 <style scoped>
+.navbar-sticky {
+  position: sticky;
+  top: 0;
+}
+
+.offcanvas-logo {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px
+}
+
+
 .banner {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-image: url("@/assets/tamatobanner.png");
+  background-image: url("@/assets/banner-with-fast-food.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   width: 100%;
   height: 300px;
-  box-shadow: 0px 20px 30px rgba(242, 235, 235, 0.5);
 }
 
-.banner-description:first-child {
+.banner-description {
+  padding: 5rem 0 0 2rem;
+}
+
+.takefood-text {
+  padding: 10px;
+  border: solid 2px darkorange;
+  border-radius: 10%;
+  background-color: rgb(33, 37, 41);
+  color: yellow;
+}
+
+
+
+.banner-description h1,
+h2 {
   font-weight: 700;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular';
-  color: rgb(208, 152, 10);
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular'; */
+  color: rgb(33, 37, 41);
   text-shadow: 0ch;
 }
 </style>
