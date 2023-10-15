@@ -11,3 +11,7 @@ Route::post('/user/login', [UserController::class, 'loginUser']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/restaurant/info', [UserController::class, 'general_info']);
+Route::put('/restaurant/info/{id}', [UserController::class, 'general_info_edit']);
+Route::get('/categories', [UserController::class, 'categories']);
+Route::put('/categories/{id}', [UserController::class, 'categories_edit']);
