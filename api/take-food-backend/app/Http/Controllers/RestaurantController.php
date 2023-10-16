@@ -77,7 +77,7 @@ class RestaurantController extends Controller
 
     public function general_info(){
 
-        $data['general_info'] = restaurant::all();
+        $data['restaurant_info'] = restaurant::all();
 
 
         return with($data);
