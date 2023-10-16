@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('city')->nullable();
             $table->string('street')->nullable();
             $table->string('street_number')->nullable();
-            $table->integer('rol')->default(0);
+            $table->integer('rol')->nullable()->default(0);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
