@@ -1,5 +1,5 @@
 <template>
-  <div class="row navbar gx-0 p-2 bg-dark navbar-sticky">
+  <div class="row navbar gx-0 p-2 bg-dark sticky-top offcanvas-custom">
     <div class="col-4 align-self-center">
       <div class="row">
         <div class="col">
@@ -70,9 +70,8 @@ import UserLoged from '@/components/UserLoged.vue';
 </script>
 
 <style scoped>
-.navbar-sticky {
-  position: sticky;
-  top: 0;
+.offcanvas-custom {
+  z-index: 2;
 }
 
 .offcanvas-logo {
@@ -81,29 +80,26 @@ import UserLoged from '@/components/UserLoged.vue';
   height: 50px
 }
 
-
 .banner {
   background-image: url("@/assets/banner-with-fast-food.jpeg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center center;
+  background-position: right;
   width: 100%;
-  height: 300px;
+  min-height: 400px;
 }
 
 .banner-description {
-  padding: 5rem 0 0 2rem;
+  padding: 7rem 0 0 2rem;
 }
 
 .takefood-text {
-  padding: 10px;
+  padding: 0.625rem;
   border: solid 2px darkorange;
   border-radius: 10%;
   background-color: rgb(33, 37, 41);
-  color: yellow;
+  color: darkorange;
 }
-
-
 
 .banner-description h1,
 h2 {
@@ -111,5 +107,28 @@ h2 {
   /* font-family: 'Lucida Sans', 'Lucida Sans Regular'; */
   color: rgb(33, 37, 41);
   text-shadow: 0ch;
+}
+
+@media screen and (max-width: 480px) {
+
+  .banner {
+    background-position: left;
+    min-height: 300px;
+  }
+
+  .banner-description {
+    padding: 5rem 0 0 2rem;
+  }
+
+  .takefood-text {
+    padding: 2px;
+    border: solid 2px darkorange;
+    border-radius: 5px;
+  }
+
+  .banner-description {
+    font-weight: 200;
+    font-size: 2rem;
+  }
 }
 </style>

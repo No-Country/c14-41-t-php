@@ -22,7 +22,7 @@
       "name": "Plato 1",
       "desc": "this is an description of the product",
       "price": "$1500",
-      "image": "@/assets/burger.png",
+      "image": "c14-41-t-php/client/src/assets/burger.png",
       "category": "Empanadas"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Plato 2",
       "desc": "this is an description of the product",
       "price": "$1500",
-      "image": "@/assets/burger.png",
+      "image": "/assets/burger.png",
       "category": "Empanadas"
     },
     {
@@ -38,7 +38,7 @@
       "name": "Plato 3",
       "desc": "this is an description of the product",
       "price": "$1500",
-      "image": "@/assets/burger.png",
+      "image": "/assets/burger.png",
       "category": "Empanadas"
     },
     {
@@ -46,7 +46,7 @@
       "name": "Plato 4",
       "desc": "this is an description of the product",
       "price": "$1500",
-      "image": "@/assets/burger.png",
+      "image": "/assets/burger.png",
       "category": "Empanadas"
     },
     {

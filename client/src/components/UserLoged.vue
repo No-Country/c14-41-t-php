@@ -60,11 +60,6 @@ const user = 'Usuario'
   margin-left: 4px;
 }
 
-/* #componentBadge {
-    background-color: $header ;
-  }
- */
-
 #SidebarIcon:hover {
   cursor: pointer;
 }

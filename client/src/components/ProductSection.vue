@@ -1,10 +1,61 @@
 <template>
   <h2 class="titulo-menu">Menú</h2>
   <section>
+    <!--<div>
+       <Splide class="carousel-container" :options="options" aria-label="My Favorite Images">
+        <SplideSlide>
+          <div class="card">
+            <img src="@/assets/burger.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </SplideSlide>
+        <SplideSlide>
+          <div class="card">
+            <img src="@/assets/burger.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </SplideSlide>
+        <SplideSlide>
+          <div class="card">
+            <img src="@/assets/burger.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </SplideSlide>
+        <SplideSlide>
+          <div class="card">
+            <img src="@/assets/burger.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+        </SplideSlide>
+      </Splide>
+    </div> -->
+
+
+
     <div class="carousel-container" v-for="category in categories" :key="category.id">
       <h2 class="category-name">{{ category.name }}</h2>
-      <Splide :options="options" aria-label="categories">
-        <SplideSlide v-for="food in products" :key="food.id">
+      <Splide class="splide" :options="options" aria-label="categories">
+        <SplideSlide class="splide-slide" v-for="food in products" :key="food.id">
           <ProductCard :propFood="food" />
         </SplideSlide>
       </Splide>
@@ -32,10 +83,17 @@ onMounted(() => {
 // Define your options here
 const options = {
   type: "loop",
+  drag: "free",
+  snap: true,
   perPage: 3, // Number of slides to show at once
   autoplay: false,
   gap: "2rem",
-  // autoWidth: true,
+  breakpoints: {
+    640: {
+      perPage: 1,
+      arrows: false,
+    },
+  }
 };
 </script>
 
@@ -51,7 +109,7 @@ const options = {
 }
 
 .carousel-container {
-  margin: 3rem;
+  margin: 1rem;
 }
 
 .category-name {
@@ -60,5 +118,20 @@ const options = {
   color: rgb(208, 152, 10);
   padding: 1rem;
   text-shadow: 0 0 2px rgba(255, 140, 0, 0.8);
+}
+
+.splide {
+  padding: 0 4rem 3rem 4rem;
+}
+
+@media screen and (max-width: 480px) {
+  .carousel-container {
+    padding: 0 0 2rem 0;
+  }
+
+  .splide {
+    padding: 2rem 0;
+  }
+
 }
 </style>
