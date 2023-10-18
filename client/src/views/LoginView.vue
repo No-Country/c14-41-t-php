@@ -66,6 +66,7 @@
 <script  setup>
   import { ref, watchEffect, watch } from 'vue'
   import useAuth from '@/store/auth'
+  import router from '@/router'
 
   //uso de funciones en el store
   const store = useAuth()
@@ -109,7 +110,6 @@
       isEmailValid.value = true
     }
   });
-
   watch(password, (newPassword) => {
 
     isPasswordValid.value = longRegex.test(newPassword);
@@ -123,7 +123,6 @@
       isPasswordValid.value = true
     }
   });
-
   const showPassword=(()=>{
     chageIcon.value = !chageIcon.value
     type.value='text'
@@ -151,7 +150,12 @@
         return
       }
 
-      store.login(email.value, password.value)
+      await store.login(email.value, password.value)
+
+      if (store.statusUser) {
+      //Acceso ok
+      router.push({ name: 'home' })
+      }
 
     }else{
       store.notification('Todos los campos son requeridos')

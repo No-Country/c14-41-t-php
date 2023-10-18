@@ -22,7 +22,7 @@
       "name": "Plato 1",
       "desc": "this is an description of the product",
       "price": "$1500",
-      "image": "c14-41-t-php/client/src/assets/burger.png",
+      "image": "/client/src/assets/burger.png",
       "category": "Empanadas"
     },
     {

@@ -198,6 +198,7 @@
 <script setup>
   import { ref, watch } from 'vue'
   import useAuth from '@/store/auth'
+  import router from '@/router'
 
   //uso de funciones en el store
   const store = useAuth()
@@ -422,6 +423,11 @@ const createUser = async()=> {
   }
 
   await store.register(terminos.value, name.value, email.value, password.value, tel.value, city.value, altura.value, street.value, lastName.value)
+
+  if (store.statusUser) {
+    //Acceso ok
+    router.push({ name: 'home' })
+  }
 
 
 }

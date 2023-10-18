@@ -39,7 +39,7 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function createUser(UserRequest $request)
+    public function createUser(Request $request)
     {
         $user = User::create($request->all());
         return response()->json([
@@ -49,7 +49,7 @@ class UserController extends Controller
         ], 201);
     }
 
-    public function loginUser(UserRequest $request)
+    public function loginUser(Request $request)
     {
         if(!Auth::attempt($request->only(['email', 'password'])))
         {

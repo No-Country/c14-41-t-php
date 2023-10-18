@@ -13,7 +13,7 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#"><v-icon class="me-1" sacale="1.2" name="ri-lock-password-line" />Cambiar
                 contraseña</a></li>
-            <li><a class="dropdown-item" href="#"><v-icon name="bi-power" scale="1.2" class="me-1" />Cerrar sesion</a>
+            <li><a class="dropdown-item" @click="logOut()" href="#"><v-icon name="bi-power" scale="1.2" class="me-1" />Cerrar sesion</a>
             </li>
           </ul>
         </div>
@@ -40,17 +40,16 @@
 
 
 <script setup>
-// import useAuth from '@/store/auth'
-// import router from '@/router'
+import useAuth from '@/store/auth'
+import router from '@/router'
 
-// const store = useAuth()
+const store = useAuth()
 
-// const logOut = () => {
-//   store.reset()
-//   router.push({ name: 'login' })
-// }
-// const user = store.User.username
-const user = 'Usuario'
+const logOut = () => {
+  store.reset()
+  router.push({ name: 'login' })
+}
+const user = store.user.email
 
 </script>
 

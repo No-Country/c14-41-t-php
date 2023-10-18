@@ -5,14 +5,15 @@ const useAuth = defineStore('auth',{
   state: ()=>{
     return {
       token:null,
-      user:{},
+      statusUser:false,
+      user:{email:'Not logged in'},
       feedback:''
     }
   },
 
   actions:{
-    async register (terminos, name, email, password, tel, city, altura, street, lastname ){
-      
+    async register (terminos, name, email, password, phone, city, street_number, street, last_name ){
+      this.reset()
       if(terminos == false){
         this.feedback =" Acepatar términos y condiciones para registrarse"
         setTimeout(()=>{
@@ -21,57 +22,51 @@ const useAuth = defineStore('auth',{
         return
       }
       
-      await axios.post('register',{
+      await axios.post('user/create',{
         name,
-        lastname,
+        last_name,
         street,
-        altura,
+        street_number,
         city,
-        tel,
+        phone,
         email,
-        password,
-        terminos
+        password
       })
       .then(response =>{
-          console.log('La data del Back', response.data)
-        //   if(response.data.status){
-        //   this.token = response.data.token.token
-        //   this.User = response.data.user[0]
-        //   this.statusUser = true
-        // }
+
+        if(response.data.success){
+          this.token = response.data.token
+          this.statusUser = response.data.success
+          this.user.email = email
+        }
 
       })
       .catch((error)=>{
-        console.log('Error del front _ auth', error)
-        this.statusUser = error.response.data.status
+        console.log('ERROR al registrarse', error)
+        
       }) 
       
-      
-      console.log('Token en Storage_register', this.feedback)
     },
 
-
     async login( email, password){
-
-      // await axios.post('login',{
-      //   email,
-      //   password
-      // })
-      // .then(response =>{
+      this.reset()
+      await axios.post('user/login',{
+        email,
+        password
+      })
+      .then(response =>{
         
-      //   // if(response.data.status){
-      //   //   //Verdadero
-      //   //   this.token = response.data.token.token
-      //   //   this.User = response.data.user[0]
-      //   //   this.statusUser = true
-      //   // }
-        
-      // })
-      // .catch((error)=>{
-      //   console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
-      // })  
+        if(response.data.status){
+          //Verdadero
+          this.token = response.data.token
+          this.statusUser = response.data.status
+          this.user.email = email
+        }
+      })
+      .catch((error)=>{
+        console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
+      })  
       
-      console.log('Respnse del back al front',email, password)
     },
 
     notification(messaje){
@@ -80,9 +75,14 @@ const useAuth = defineStore('auth',{
           this.feedback=''
         },4000)
         return
-      },
+    },
     
-
+    reset (){
+      this.token = null,
+      this.statusUser = false,
+      this. User = {email:'Not logged in'},
+      this.feedback=''
+    }
   }
 
 })
