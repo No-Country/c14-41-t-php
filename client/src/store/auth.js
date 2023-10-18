@@ -64,7 +64,8 @@ const useAuth = defineStore('auth',{
         }
       })
       .catch((error)=>{
-        console.log('Error en Login',error) // en caso de poner un mail erroneo Sale por aca!
+        console.log('Error en Login',error.response.data.message) // en caso de poner un mail erroneo Sale por aca!
+        this.notification(error.response.data.message)
       })  
       
     },
@@ -80,7 +81,7 @@ const useAuth = defineStore('auth',{
     reset (){
       this.token = null,
       this.statusUser = false,
-      this. User = {email:'Not logged in'},
+      this. user.email='Not logged in',
       this.feedback=''
     }
   }

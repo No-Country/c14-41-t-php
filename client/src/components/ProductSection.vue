@@ -2,12 +2,10 @@
   <h2 class="titulo-menu">Menú</h2>
   <section>
     <div class="carousel-container" v-for="category in categories" :key="category">
-      <!-- <h2 class="category-name">{{ category.name }}</h2> -->
       <h2 class="category-name">{{ category }}</h2>
       <Splide class="splide" :options="options" aria-label="categories">
-        <SplideSlide class="splide-slide" v-for="food in products" :key="food.id">
-          <!-- <ProductCard :propFood="food" /> -->
-          <h2>test</h2>
+        <SplideSlide class="splide-slide" v-for="food in getProductsByCategory(category)" :key="food.id">
+          <ProductCard :="food" />
         </SplideSlide>
       </Splide>
     </div>
@@ -18,32 +16,38 @@
 //importations
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css/skyblue";
-// import ProductCard from "@/components/ProductCard.vue";
+import ProductCard from "@/components/ProductCard.vue";
 import axios from "@/plugins/axios"
 import { onMounted, ref } from "vue";
 
   let categories = ref([]);
   let products = ref([]);
 
+  const getProductsByCategory = (category) => {
+    return products.value.filter(product => product.id_category === category);
+  };
+  
 const  getProducts = ( async ()=>{
   try {
+    let dataCategory = []
+    
     const response = await axios.get('products')
+
     products.value = response.data.products
 
-    console.log('data del back products', products.value)
+    //console.log('data del back products', products.value)
 
     if (products.value && products.value.length > 0) {
+      dataCategory = products.value.map(it => {
 
-      categories.value = products.value.map(it => {
-        return {
-          "categories": it.id_category
-        }
+        return it.id_category
+        
       });
+      const dataArr = new Set(dataCategory)
+      categories.value = [...dataArr]
     }
 
-
-
-    console.log(categories.value)
+     //console.log('productos',categories.value)
     
   } catch (error) {
     console.error('Error al obtener productos', error);
@@ -53,8 +57,6 @@ const  getProducts = ( async ()=>{
 })
 
 onMounted(() => {
-  // fetchData(categories);
-  // fetchProducts(products);
   getProducts()
 });
 

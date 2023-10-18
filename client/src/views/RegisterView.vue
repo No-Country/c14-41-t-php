@@ -372,7 +372,7 @@
 const createUser = async()=> {
   const msg = "Alguno de los campos ingresados no es válido"
 
-  if(name.value !='' && lastName.value !='' && email.value !='' && password.value !='' && confirmPassword.value != ''){
+  if(name.value !='' && lastName.value !='' && email.value !='' && password.value !='' && confirmPassword.value != '' && tel.value !=''){
     if (name.value != '' && !errorName.value) {
       store.notification(msg)
       return
@@ -418,7 +418,7 @@ const createUser = async()=> {
       return
     }
   }else{
-    store.notification('Nombre, Apellido, Email, contraseña y re-confirmacion de contraseña son campos obligatorios')
+    store.notification('Nombre, Apellido, Email, contraseña, re-confirmacion de contraseña y teléfono son campos obligatorios')
     return
   }
 
