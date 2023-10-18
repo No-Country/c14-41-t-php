@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -68,6 +69,22 @@ class UserController extends Controller
         ], 200);
 
 
+    }
+
+    public function editUser(Request $request)
+    {
+        $user = $request->user();
+        $user->name = $request->name;
+        $user->last_name = $request->last_name;
+        $user->phone = $request->phone;
+        $user->city = $request->city;
+        $user->street = $request->street;
+        $user->street_number = $request->street_number;
+        $user->save();
+
+        return response()->json([
+        'success' => true,
+        ],200);
     }
 
     /**
