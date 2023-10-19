@@ -1,62 +1,11 @@
 <template>
   <h2 class="titulo-menu">Menú</h2>
   <section>
-    <!--<div>
-       <Splide class="carousel-container" :options="options" aria-label="My Favorite Images">
-        <SplideSlide>
-          <div class="card">
-            <img src="@/assets/burger.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </SplideSlide>
-        <SplideSlide>
-          <div class="card">
-            <img src="@/assets/burger.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </SplideSlide>
-        <SplideSlide>
-          <div class="card">
-            <img src="@/assets/burger.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </SplideSlide>
-        <SplideSlide>
-          <div class="card">
-            <img src="@/assets/burger.png" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">Card title</h5>
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-                content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </SplideSlide>
-      </Splide>
-    </div> -->
-
-
-
-    <div class="carousel-container" v-for="category in categories" :key="category.id">
-      <h2 class="category-name">{{ category.name }}</h2>
+    <div class="carousel-container" v-for="category in categories" :key="category">
+      <h2 class="category-name">{{ category }}</h2>
       <Splide class="splide" :options="options" aria-label="categories">
-        <SplideSlide class="splide-slide" v-for="food in products" :key="food.id">
-          <ProductCard :propFood="food" />
+        <SplideSlide class="splide-slide" v-for="food in getProductsByCategory(category)" :key="food.id">
+          <ProductCard :="food" />
         </SplideSlide>
       </Splide>
     </div>
@@ -68,19 +17,50 @@
 import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css/skyblue";
 import ProductCard from "@/components/ProductCard.vue";
-import { fetchData, fetchProducts } from "@/plugins/axios"
+import axios from "@/plugins/axios"
 import { onMounted, ref } from "vue";
 
-const categories = ref([]);
-const products = ref([]);
+  let categories = ref([]);
+  let products = ref([]);
 
+  const getProductsByCategory = (category) => {
+    return products.value.filter(product => product.id_category === category);
+  };
+  
+const  getProducts = ( async ()=>{
+  try {
+    let dataCategory = []
+    
+    const response = await axios.get('products')
+
+    products.value = response.data.products
+
+    //console.log('data del back products', products.value)
+
+    if (products.value && products.value.length > 0) {
+      dataCategory = products.value.map(it => {
+
+        return it.id_category
+        
+      });
+      const dataArr = new Set(dataCategory)
+      categories.value = [...dataArr]
+    }
+
+     //console.log('productos',categories.value)
+    
+  } catch (error) {
+    console.error('Error al obtener productos', error);
+  }
+ 
+ 
+})
 
 onMounted(() => {
-  fetchData(categories);
-  fetchProducts(products)
+  getProducts()
 });
 
-// Define your options here
+//Define your options here
 const options = {
   type: "loop",
   drag: "free",

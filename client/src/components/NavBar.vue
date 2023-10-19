@@ -6,7 +6,7 @@
           <a class="navbar-brand text-light" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
             aria-controls="offcanvasExample">
             <v-icon name="ri-menu-unfold-fill" scale="2.0" />
-          </a><span>COMA-RICO</span>
+          </a>
         </div>
       </div>
 

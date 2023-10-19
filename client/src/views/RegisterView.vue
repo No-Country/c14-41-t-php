@@ -198,6 +198,7 @@
 <script setup>
   import { ref, watch } from 'vue'
   import useAuth from '@/store/auth'
+  import router from '@/router'
 
   //uso de funciones en el store
   const store = useAuth()
@@ -371,7 +372,7 @@
 const createUser = async()=> {
   const msg = "Alguno de los campos ingresados no es válido"
 
-  if(name.value !='' && lastName.value !='' && email.value !='' && password.value !='' && confirmPassword.value != ''){
+  if(name.value !='' && lastName.value !='' && email.value !='' && password.value !='' && confirmPassword.value != '' && tel.value !=''){
     if (name.value != '' && !errorName.value) {
       store.notification(msg)
       return
@@ -417,11 +418,16 @@ const createUser = async()=> {
       return
     }
   }else{
-    store.notification('Nombre, Apellido, Email, contraseña y re-confirmacion de contraseña son campos obligatorios')
+    store.notification('Nombre, Apellido, Email, contraseña, re-confirmacion de contraseña y teléfono son campos obligatorios')
     return
   }
 
   await store.register(terminos.value, name.value, email.value, password.value, tel.value, city.value, altura.value, street.value, lastName.value)
+
+  if (store.statusUser) {
+    //Acceso ok
+    router.push({ name: 'home' })
+  }
 
 
 }
