@@ -74,23 +74,21 @@ class CategoriesController extends Controller
 
     public function categories(){
 
-        // $data['categories'] = Categories::all();
-        // return with($data);
-
-        echo "Hola mundo";
+        $data['categories'] = Categories::all();
+        return $data;
     }
 
-    // public function categories_edit(Request $request, $id){
+    public function categories_edit(Request $request, $id){
 
-    //     $data = Categories::findOrFail($id);
+        $data = Categories::findOrFail($id);
 
-    //     $this->validate($request, static::$rules, static::$message);
+        $this->validate($request, static::$rules, static::$message);
 
-    //     //convierte el request en un array
-    //     $dataInfo = request()->except('_token');
+        //convierte el request en un array
+        $dataInfo = request()->except('_token');
 
-    //     $data->update($dataInfo);
+        $data->update($dataInfo);
 
-    //     return redirect('admin')->with("menssage", "Cambios Realizados");
-    // }
+        return $data;
+    }
 }
