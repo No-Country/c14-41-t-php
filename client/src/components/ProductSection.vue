@@ -13,12 +13,12 @@
 </template>
 
 <script setup>
-//importations
-import { Splide, SplideSlide } from "@splidejs/vue-splide";
-import "@splidejs/vue-splide/css/skyblue";
-import ProductCard from "@/components/ProductCard.vue";
-import axios from "@/plugins/axios"
-import { onMounted, ref } from "vue";
+  //importations
+  import { Splide, SplideSlide } from "@splidejs/vue-splide";
+  import "@splidejs/vue-splide/css/skyblue";
+  import ProductCard from "@/components/ProductCard.vue";
+  import axios from "@/plugins/axios"
+  import { onMounted, ref } from "vue";
 
   let categories = ref([]);
   let products = ref([]);
@@ -26,42 +26,39 @@ import { onMounted, ref } from "vue";
   const getProductsByCategory = (category) => {
     return products.value.filter(product => product.id_category === category);
   };
-  
-const  getProducts = ( async ()=>{
-  try {
-    let dataCategory = []
     
-    const response = await axios.get('products')
+  const  getProducts = ( async ()=>{
+    try {
+      let dataCategory = []
+      
+      const response = await axios.get('products')
 
-    products.value = response.data.products
+      products.value = response.data.products
 
-    //console.log('data del back products', products.value)
+      //console.log('data del back products', products.value)
 
-    if (products.value && products.value.length > 0) {
-      dataCategory = products.value.map(it => {
+      if (products.value && products.value.length > 0) {
+        dataCategory = products.value.map(it => {
 
-        return it.id_category
-        
-      });
-      const dataArr = new Set(dataCategory)
-      categories.value = [...dataArr]
+          return it.id_category
+          
+        });
+        const dataArr = new Set(dataCategory)
+        categories.value = [...dataArr]
+      }
+
+    } catch (error) {
+      console.error('Error al obtener productos', error);
     }
+  
+  })
 
-     //console.log('productos',categories.value)
-    
-  } catch (error) {
-    console.error('Error al obtener productos', error);
-  }
- 
- 
-})
+  onMounted(() => {
+    getProducts()
+  });
 
-onMounted(() => {
-  getProducts()
-});
-
-//Define your options here
-const options = {
+  //Define your options here
+  const options = {
   type: "loop",
   drag: "free",
   snap: true,

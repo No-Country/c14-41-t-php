@@ -4,8 +4,8 @@
     
       <div class="col ">
         <v-icon scale="1.8" name="fa-user-circle" />
-        <span v-if="store.statusUser" class="nameUser">{{ store.user.email }}</span>
-        <span v-else  class="nameUser"><router-link :to="{name:'login'}">{{ store.user.email }}</router-link></span>
+        <span v-if="store.statusUser" class="nameUser">{{ store.user }}</span>
+        <span v-else  class="nameUser"><router-link :to="{name:'login'}">{{ store.user }}</router-link></span>
       </div>
 
       <div v-if="store.statusUser" class="col">
