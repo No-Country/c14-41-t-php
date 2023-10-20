@@ -20,17 +20,17 @@ import ProductCard from "@/components/ProductCard.vue";
 import axios from "@/plugins/axios"
 import { onMounted, ref } from "vue";
 
-  let categories = ref([]);
-  let products = ref([]);
+let categories = ref([]);
+let products = ref([]);
 
-  const getProductsByCategory = (category) => {
-    return products.value.filter(product => product.id_category === category);
-  };
-  
-const  getProducts = ( async ()=>{
+const getProductsByCategory = (category) => {
+  return products.value.filter(product => product.id_category === category);
+};
+
+const getProducts = (async () => {
   try {
     let dataCategory = []
-    
+
     const response = await axios.get('products')
 
     products.value = response.data.products
@@ -41,19 +41,19 @@ const  getProducts = ( async ()=>{
       dataCategory = products.value.map(it => {
 
         return it.id_category
-        
+
       });
       const dataArr = new Set(dataCategory)
       categories.value = [...dataArr]
     }
 
-     //console.log('productos',categories.value)
-    
+    //console.log('productos',categories.value)
+
   } catch (error) {
     console.error('Error al obtener productos', error);
   }
- 
- 
+
+
 })
 
 onMounted(() => {

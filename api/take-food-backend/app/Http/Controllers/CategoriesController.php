@@ -13,7 +13,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+       //
     }
 
     /**
@@ -74,10 +74,9 @@ class CategoriesController extends Controller
 
     public function categories(){
 
-        // $data['categories'] = Categories::all();
-        // return with($data);
-
-        echo "Hola mundo";
+        //
+        $data['categories'] = Categories::all();
+        return $data;
     }
 
     // public function categories_edit(Request $request, $id){

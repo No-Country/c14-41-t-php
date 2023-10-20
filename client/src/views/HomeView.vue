@@ -1,6 +1,7 @@
 <template>
   <NavBar />
   <main class="main-container">
+    <ModalUser />
     <ProductSection />
   </main>
   <FooterHome />
@@ -8,10 +9,8 @@
 <script setup>
 import NavBar from '@/components/NavBar.vue';
 import ProductSection from '@/components/ProductSection.vue';
-import FooterHome from '@/components/FooterHome.vue'
-
-
-
+import FooterHome from '@/components/FooterHome.vue';
+import ModalUser from '@/components/ModalUser.vue';
 </script>
 
 <style scoped>

@@ -1,11 +1,12 @@
 <template>
   <div class="badge rounded-pill text-light">
     <div class=" row mx-2 d-flex-rows justify-content-center align-items-center" id="componentBadge">
-    
-      <div class="col ">
+
+      <div class="col">
         <v-icon scale="1.8" name="fa-user-circle" />
-        <span v-if="store.statusUser" class="nameUser">{{ store.user.email }}</span>
-        <span v-else  class="nameUser"><router-link :to="{name:'login'}">{{ store.user.email }}</router-link></span>
+        <span v-if="store.statusUser" class="nameUser" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{{
+          store.user.email }}</span>
+        <span v-else class="nameUser"><router-link :to="{ name: 'login' }">{{ store.user.email }}</router-link></span>
       </div>
 
       <div v-if="store.statusUser" class="col">
@@ -15,7 +16,8 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="#"><v-icon class="me-1" sacale="1.2" name="ri-lock-password-line" />Cambiar
                 contraseña</a></li>
-            <li><a class="dropdown-item" @click="logOut()" href="#"><v-icon name="bi-power" scale="1.2" class="me-1" />Cerrar sesion</a>
+            <li><a class="dropdown-item" @click="logOut()" href="#"><v-icon name="bi-power" scale="1.2"
+                  class="me-1" />Cerrar sesion</a>
             </li>
           </ul>
         </div>
@@ -44,7 +46,7 @@
 
 
 <script setup>
-import useAuth from '@/store/auth'
+import useAuth from '@/store/auth';
 //import router from '@/router'
 
 const store = useAuth()
@@ -56,13 +58,12 @@ const logOut = () => {
 </script>
 
 <style  scoped>
-
 a:link {
   text-decoration: none;
 }
 
-.nameUser >a {
-  color:white;
+.nameUser>a {
+  color: white;
 }
 
 .nameUser {
@@ -70,7 +71,7 @@ a:link {
   margin-left: 4px;
 }
 
-#SidebarIcon:hover {
+.nameUser:hover {
   cursor: pointer;
 }
 
