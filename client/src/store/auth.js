@@ -5,8 +5,9 @@ const useAuth = defineStore('auth',{
   state: ()=>{
     return {
       token:null,
+      rol: null,
       statusUser:false,
-      user:{email:'Not logged in'},
+      user:'Not logged in',
       feedback:''
     }
   },
@@ -37,7 +38,7 @@ const useAuth = defineStore('auth',{
         if(response.data.success){
           this.token = response.data.token
           this.statusUser = response.data.success
-          this.user.email = email
+          this.user = email
         }
 
       })
@@ -60,7 +61,7 @@ const useAuth = defineStore('auth',{
           //Verdadero
           this.token = response.data.token
           this.statusUser = response.data.status
-          this.user.email = email
+          this.user = email
         }
       })
       .catch((error)=>{
@@ -81,8 +82,9 @@ const useAuth = defineStore('auth',{
     reset (){
       this.token = null,
       this.statusUser = false,
-      this. user.email='Not logged in',
-      this.feedback=''
+      this. user = 'Not logged in',
+      this.feedback = '',
+      this.rol = null
     }
   }
 
