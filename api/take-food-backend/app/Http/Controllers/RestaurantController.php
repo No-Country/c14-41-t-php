@@ -79,7 +79,6 @@ class RestaurantController extends Controller
 
         $data['restaurant_info'] = restaurant::all();
 
-
         return with($data);
     }
 

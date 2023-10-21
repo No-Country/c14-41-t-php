@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CategoriesRequest;
 use App\Models\Categories;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -19,9 +20,14 @@ class CategoriesController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        $categories = Categories::create($request->all());
+
+        return response()->json([
+            "success" => true,
+            "message" => "Categoria creada exitosamente",
+        ], 201);
     }
 
     /**
@@ -64,33 +70,28 @@ class CategoriesController extends Controller
         //
     }
 
-    // private static $rules = [
-    //     'id_categories' => 'required',
-    //     'description' => 'required'
-    // ];
+    private static $rules = [
+        'name' => 'required'
+    ];
     
-    // private static $message = [
-    // ];
+    private static $message = [
+    ];
 
     public function categories(){
-
-        // $data['categories'] = Categories::all();
-        // return with($data);
-
-        echo "Hola mundo";
+        $data['categories'] = Categories::all();
+        return ($data);
     }
 
-    // public function categories_edit(Request $request, $id){
+    public function categories_edit(Request $request, $id){
+        $data = Categories::findOrFail($id);
 
-    //     $data = Categories::findOrFail($id);
+        $this->validate($request, static::$rules, static::$message);
 
-    //     $this->validate($request, static::$rules, static::$message);
+        //convierte el request en un array
+        $dataInfo = request()->except('_token');
 
-    //     //convierte el request en un array
-    //     $dataInfo = request()->except('_token');
+        $data->update($dataInfo);
 
-    //     $data->update($dataInfo);
-
-    //     return redirect('admin')->with("menssage", "Cambios Realizados");
-    // }
+        return redirect('admin')->with("menssage", "Cambios Realizados");
+    }
 }
