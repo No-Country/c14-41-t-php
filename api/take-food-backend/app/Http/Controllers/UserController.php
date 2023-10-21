@@ -43,11 +43,12 @@ class UserController extends Controller
     public function createUser(Request $request)
     {
         $user = User::create($request->all());
+
         return response()->json([
-            "success" => true,
-            "message" => "Usuario creado exitosamente",
-            'token' => $user->createToken("API TOKEN")->plainTextToken
-        ], 201);
+                "success" => true,
+                "message" => "Usuario creado exitosamente",
+                'token' => $user->createToken("API TOKEN")->plainTextToken
+                ]);
     }
 
     public function loginUser(Request $request)
@@ -65,7 +66,9 @@ class UserController extends Controller
         return response()->json([
             'status' => true,
             'message' => 'Usuario logeado correctamente',
-            'token' => $user->createToken("API TOKEN")->plainTextToken
+            'name' => $user->name,
+            'lastName' => $user->last_name,
+            'token' => $user->createToken("API TOKEN")->plainTextToken,
         ], 200);
 
 

@@ -4,8 +4,8 @@
     
       <div class="col ">
         <v-icon scale="1.8" name="fa-user-circle" />
-        <span v-if="store.statusUser" class="nameUser">{{ store.user.email }}</span>
-        <span v-else  class="nameUser"><router-link :to="{name:'login'}">{{ store.user.email }}</router-link></span>
+        <span v-if="store.statusUser" class="nameUser">{{ store.user }}</span>
+        <span v-else  class="nameUser"><router-link :to="{name:'login'}">{{ store.user }}</router-link></span>
       </div>
 
       <div v-if="store.statusUser" class="col">
@@ -23,17 +23,23 @@
       </div>
 
       <div class="col">
-        <a type="button" class="text-light" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+        <div class="position-relative" style="width: 30px;">
+        <a type="button" class="text-light position-relative" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
           aria-controls="offcanvasRight" href="#"><v-icon name="md-addshoppingcart" scale="1" class="m-1" hover
             animation="wrench" /></a>
-
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              0
+              <span class="visually-hidden">unread messages</span>
+            </span>
+        </div>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
           <div class="offcanvas-header">
-            <h5 id="offcanvasRightLabel">Carrito</h5>
+            <h5 id="offcanvasRightLabel">Carrito de Compras</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
           <div class="offcanvas-body">
-            ...
+            <ProducAdd />
+            <ProducAdd />
           </div>
         </div>
       </div>
@@ -45,6 +51,7 @@
 
 <script setup>
 import useAuth from '@/store/auth'
+import ProducAdd from '@/components/ProductAdd.vue'
 //import router from '@/router'
 
 const store = useAuth()
@@ -76,5 +83,12 @@ a:link {
 
 .btn-group {
   vertical-align: baseline;
+}
+
+.offcanvas-body {
+  background-color: rgb(33, 37, 41);
+  text-align-last: left; 
+  height: 100vh; 
+  padding-left: 35px;
 }
 </style>
