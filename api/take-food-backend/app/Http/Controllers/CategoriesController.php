@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Http\Requests\CategoriesRequest;
 use App\Models\Categories;
+use Illuminate\Http\JsonResponse;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -21,7 +22,12 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Categories::create($request->all());
+
+        return response()->json([
+            "success" => true,
+            "message" => "Categoria creada exitosamente",
+        ], 201);
     }
 
     /**
@@ -64,22 +70,19 @@ class CategoriesController extends Controller
         //
     }
 
-    // private static $rules = [
-    //     'id_categories' => 'required',
-    //     'description' => 'required'
-    // ];
+    private static $rules = [
+        'name' => 'required'
+    ];
     
-    // private static $message = [
-    // ];
+    private static $message = [
+    ];
 
     public function categories(){
-
         $data['categories'] = Categories::all();
         return $data;
     }
 
     public function categories_edit(Request $request, $id){
-
         $data = Categories::findOrFail($id);
 
         $this->validate($request, static::$rules, static::$message);
@@ -89,6 +92,6 @@ class CategoriesController extends Controller
 
         $data->update($dataInfo);
 
-        return $data;
+        return redirect('admin')->with("menssage", "Cambios Realizados");
     }
 }
