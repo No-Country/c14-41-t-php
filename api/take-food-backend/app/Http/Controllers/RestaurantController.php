@@ -80,7 +80,7 @@ class RestaurantController extends Controller
         $data['restaurant_info'] = restaurant::all();
 
 
-        return with($data);
+        return $data;
     }
 
     public function general_info_edit(Request $request, $id){
@@ -94,6 +94,7 @@ class RestaurantController extends Controller
 
         $data->update($dataInfo);
 
-        return redirect('admin')->with("menssage", "Cambios Realizados");
+        return $data;
+        // return redirect('admin')->with("menssage", "Cambios Realizados");
     }
 }

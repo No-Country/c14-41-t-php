@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Categories;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -12,10 +13,18 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
-        $data['products'] = Product::all();
+        // //
+        $data['products'] = Product::all()->except('categories');
 
-        return with($data);
+        // $data['products'] = Categories::pluck('name');
+
+        foreach ($data['products'] as $key => $value) {
+            $data['products'][$key]->id_category = $value->nameCategories;
+        }
+
+        // $data['products'] = Product::find(1)->nameCategories;
+
+        return $data;
     }
 
     /**

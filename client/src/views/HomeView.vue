@@ -11,6 +11,8 @@ import NavBar from '@/components/NavBar.vue';
 import ProductSection from '@/components/ProductSection.vue';
 import FooterHome from '@/components/FooterHome.vue';
 import ModalUser from '@/components/ModalUser.vue';
+
+
 </script>
 
 <style scoped>

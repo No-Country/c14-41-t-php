@@ -87,8 +87,6 @@
   let showEyeClose= ref(false)
   let type=ref('password')
 
- 
-
   watchEffect(() => {
     
     if(password.value!='' && showEye.value!=true){
@@ -128,13 +126,11 @@
     type.value='text'
     showEye.value = true
   })
-
   const noPassword=(()=>{
     chageIcon.value = !chageIcon.value
     type.value='password'
     showEye.value = false
   })
-
   const loguearse = async () => {
     const msg = "Alguno de los campos ingresados no es válido"
 

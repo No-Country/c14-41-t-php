@@ -47,12 +47,9 @@ const getProducts = (async () => {
       categories.value = [...dataArr]
     }
 
-    //console.log('productos',categories.value)
-
   } catch (error) {
     console.error('Error al obtener productos', error);
   }
-
 
 })
 
