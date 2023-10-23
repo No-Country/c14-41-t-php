@@ -2,6 +2,7 @@
   <div class="badge rounded-pill text-light">
     <div class=" row mx-2 d-flex-rows justify-content-center align-items-center" id="componentBadge">
 
+      <router-link to="/admin">Go to Admin</router-link>
       <div class="col">
         <v-icon scale="1.8" name="fa-user-circle" />
         <span v-if="store.statusUser" class="nameUser" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{{

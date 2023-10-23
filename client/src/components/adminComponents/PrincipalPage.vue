@@ -37,7 +37,8 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-warning">Nueva categoria</button>
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nueva
+                categoria</button>
         </div>
     </div>
 </template>
