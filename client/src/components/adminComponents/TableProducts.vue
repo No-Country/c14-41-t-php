@@ -1,6 +1,9 @@
 <template>
   <div class="container table-responsive ">
-    <h1>Mis Productos</h1>
+    <div class="d-flex justify-content-between" >
+      <h1>Mis Productos</h1>
+      <button type="button" @click="clickAdd()" class="btn btn-warning my-2">Agregar</button>
+    </div>
     <table class="table table-striped table-bordered border-primary align-middle table-hover">
       <thead>
         <tr>
@@ -26,7 +29,7 @@
           <td>si</td>
           <td>
             <v-icon @click="clickEdit()" name="bi-pencil" scale="1.2" class="me-3 edit" fill="#0DCAF0" />
-            <v-icon @click="clickAdd()" name="io-add-circle-sharp" scale="1.2" class="me-3 add" fill="green" />
+            <!-- <v-icon @click="clickAdd()" name="io-add-circle-sharp" scale="1.2" class="me-3 add" fill="green" /> -->
             <v-icon @click="clickRemove()" name="io-remove-circle-sharp" scale="1.2" class=" remove" fill="red" />
           </td>
         </tr>

@@ -38,7 +38,7 @@ const useAuth = defineStore('auth', {
           if (response.data.success) {
             this.token = response.data.token
             this.statusUser = response.data.success
-            this.user = email
+            this.user = response.data.name + ' ' + response.data.lastName
           }
 
         })
@@ -61,7 +61,7 @@ const useAuth = defineStore('auth', {
             //Verdadero
             this.token = response.data.token
             this.statusUser = response.data.status
-            this.user = email
+            this.user = response.data.name + ' ' + response.data.lastName
           }
         })
         .catch((error) => {
