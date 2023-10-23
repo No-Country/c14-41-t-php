@@ -23,7 +23,7 @@ class CategoriesController extends Controller
     public function create(Request $request)
     {
         $categories = Categories::create($request->all());
-
+        
         return response()->json([
             "success" => true,
             "message" => "Categoria creada exitosamente",

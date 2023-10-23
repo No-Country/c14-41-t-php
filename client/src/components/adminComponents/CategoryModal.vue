@@ -11,14 +11,15 @@
                 <div class="modal-body">
                     <form action="" method="post"></form>
                     <div class="mb-3">
-                        <input v-model="newCategory" type="text" class="form-control" id="exampleFormControlInput1"
+                        <input v-model="name" type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Nombre de la categoría">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form @submit.prevent="createNewCategory()">
+                    <form >
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" @click.prevent="createNewCategory()" class="btn btn-primary">Guardar</button>
+                      
                     </form>
                 </div>
             </div>
@@ -27,28 +28,28 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import axios from '@/plugins/axios'
-const newCategory = '';
+const name =ref('');
 
-// watchEffect(() => {
-//         if (newCategory.value !== '' && newCategory.value.length > 3) {
-//             const newCategoryResult = newCategory.value.toUpperCase();
-//             // createNewCategory(newCategoryResult);
-//             console.log('watching input value', newCategoryResult)
-//         }
-//     })
 
 const createNewCategory = async () => {
+ 
+  if((name.value !='' && name.value.length > 3) ){
     try {
-        const response = await axios.post('/categories/create', { newCategory });
+      const response = await axios.post('/categories/create', { name: name.value });
 
-        if (response.data.success) {
-            console.log('New category created');
-        }
+      if (response.data.success) {
+        console.log('New category created');
+      }
     } catch (error) {
-        console.error('There was an error creating the category ', error);
+      console.error('There was an error creating the category ', error);
     }
-    console.log(newCategory)
+    return
+  }
+  
+  alert('CODIFICAR BIEN')
+    
 };
 
 </script>
