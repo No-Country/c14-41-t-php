@@ -2,7 +2,7 @@
   <div class="container table-responsive ">
     <div class="d-flex justify-content-between" >
       <h1>Mis Productos</h1>
-      <button type="button" @click="clickAdd()" class="btn btn-warning my-2">Agregar</button>
+      <button type="button" class="btn btn-warning my-2" data-bs-toggle="modal" data-bs-target="#AddProduct">Agregar</button>
     </div>
     <table class="table table-striped table-bordered border-primary align-middle table-hover">
       <thead>
@@ -64,9 +64,9 @@ const getProducts = (async () => {
 const clickEdit = () => {
   alert('editar producto')
 }
-const clickAdd = () => {
-  alert('Agregar producto')
-}
+// const clickAdd = () => {
+//   alert('Agregar producto')
+// }
 const clickRemove = () => {
   alert('Eliminar producto')
 }

@@ -46,7 +46,7 @@ class ProductController extends Controller
             "message" => "Producto creado exitosamente"
             ]);
 }
-    }
+    
 
     /**
      * Display the specified resource.
