@@ -12,9 +12,9 @@ class Categories extends Model
     protected $fillable = ['name'];
 
 
-    public static function eliminarPorNombre($name)
-    {
-        self::where('name', $name)->delete();
-    }
+    // public static function eliminarPorNombre($name)
+    // {
+    //     self::where('name', $name)->delete();
+    // }
 }
 

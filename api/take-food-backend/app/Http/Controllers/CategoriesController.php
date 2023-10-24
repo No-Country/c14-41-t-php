@@ -65,14 +65,22 @@ class CategoriesController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request, Categories $categories)
+    public function destroy(Request $request, Categories $categories, $id)
     {
-        $categories = Categories::eliminarPorNombre('');
+        //manera usando controlador y modelo, borra categoria escribiendo el nombre de la misma (en ruta se le borraria /{id})
+        // $categories = Categories::eliminarPorNombre($request->name);   
+        // return response()->json([
+        //     "success" => true,
+        //     "message" => "Categoria eliminada exitosamente",
+        // ], 200);
+
+        //otra mas simplificada, usando el id de la categoria
+        Categories::find($id)->delete();
         
         return response()->json([
             "success" => true,
             "message" => "Categoria eliminada exitosamente",
-        ], 201);
+        ], 200);
     }
 
     private static $rules = [
