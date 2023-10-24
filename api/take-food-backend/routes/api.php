@@ -22,6 +22,7 @@ Route::put('/restaurant/info/{id}', [RestaurantController::class, 'general_info_
 Route::get('/categories', [CategoriesController::class, 'categories']);
 Route::put('/categories/{id}', [CategoriesController::class, 'categories_edit']);
 Route::post('/categories/create', [CategoriesController::class, 'create']);
+Route::get('/categories/delete', [CategoriesController::class, 'destroy']);
 //------PRODUCTOS------
 Route::get('/products', [ProductController::class, 'index']);//Ruta para obtener la info. de todoso los productos
 Route::post('/product/create', [ProductController::class, 'store']);//Ruta para crear un nuevo producto
