@@ -25,6 +25,6 @@ Route::post('/categories/create', [CategoriesController::class, 'create']);
 Route::delete('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
 //------PRODUCTOS------
 Route::get('/products', [ProductController::class, 'index']);//Ruta para obtener la info. de todoso los productos
-Route::post('/product/create', [ProductController::class, 'store']);//Ruta para crear un nuevo producto
+Route::post('/products/create', [ProductController::class, 'store']);//Ruta para crear un nuevo producto
 
 Route::post('/crear-orden', [OrderController::class, 'crearOrden']);
