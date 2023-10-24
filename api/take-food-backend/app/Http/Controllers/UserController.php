@@ -45,8 +45,10 @@ class UserController extends Controller
         $user = User::create($request->all());
 
         return response()->json([
-                "success" => true,
-                "message" => "Usuario creado exitosamente",
+                'success' => true,
+                'message' => "Usuario creado exitosamente",
+                'name' => $user->name,
+                'lastName' => $user->last_name,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
                 ]);
     }
