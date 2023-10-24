@@ -10,4 +10,11 @@ class Categories extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+
+    public static function eliminarPorNombre($name)
+    {
+        self::where('name', $name)->delete();
+    }
 }
+
