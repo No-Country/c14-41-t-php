@@ -49,6 +49,7 @@ class UserController extends Controller
                 'message' => "Usuario creado exitosamente",
                 'name' => $user->name,
                 'lastName' => $user->last_name,
+                'rol'=> 0,
                 'token' => $user->createToken("API TOKEN")->plainTextToken
                 ]);
     }
@@ -70,6 +71,7 @@ class UserController extends Controller
             'message' => 'Usuario logeado correctamente',
             'name' => $user->name,
             'lastName' => $user->last_name,
+            'rol'=> $user->rol,
             'token' => $user->createToken("API TOKEN")->plainTextToken,
         ], 200);
 
