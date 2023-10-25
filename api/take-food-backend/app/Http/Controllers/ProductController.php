@@ -60,4 +60,13 @@ class ProductController extends Controller
             "success" => true,
         ], 200);
     }
+
+    public function show($id){
+        
+        $data['products'] = Product::findorfail($id);
+
+        $data['products']->id_category = $value->nameCategories;
+
+        return $data;
+    }
 }
