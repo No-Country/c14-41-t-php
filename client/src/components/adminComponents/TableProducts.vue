@@ -2,7 +2,10 @@
   <div class="container table-responsive ">
     <div class="d-flex justify-content-between" >
       <h1>Mis Productos</h1>
-      <button type="button" class="btn btn-warning my-2" data-bs-toggle="modal" data-bs-target="#AddProduct">Agregar</button>
+      <div>
+        <button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#AddProduct" >Agregar</button>
+        <button @click="getProducts()" type="button" class="btn btn-warning my-2" >Actualiizar</button>
+      </div>
     </div>
     <table class="table table-striped table-bordered border-primary align-middle table-hover">
       <thead>
@@ -40,36 +43,39 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue';
-import axios from "@/plugins/axios";
+  import { ref, onMounted } from 'vue';
+  import axios from "@/plugins/axios";
 
-onMounted(() => {
-  getProducts()
-});
+  onMounted(() => {
+    getProducts()
+  });
 
-let products = ref([]);
+  let products = ref([]);
 
-const getProducts = (async () => {
-  try {
-    const response = await axios.get('products')
-    products.value = response.data.products
+  const getProducts = (async () => {
+    try {
+      const response = await axios.get('products')
+      products.value = response.data.products
 
-  } catch (error) {
-    console.error('Error al obtener productos', error);
+    } catch (error) {
+      console.error('Error al obtener productos', error);
+    }
+
+  })
+
+  //Fuciones para las acciones del crud
+  const clickEdit = () => {
+    alert('editar producto')
   }
-
-})
-
-//Fuciones para las acciones del crud
-const clickEdit = () => {
-  alert('editar producto')
-}
-// const clickAdd = () => {
-//   alert('Agregar producto')
-// }
-const clickRemove = () => {
-  alert('Eliminar producto')
-}
+  // const clickAdd = () => {
+  //   alert('Agregar producto')
+  // }
+  const clickRemove = () => {
+    alert('Eliminar producto')
+  }
+  // function showAlert(){
+  //   alert('mostrar esto')
+  // }
 </script>
 
 <style scoped>
