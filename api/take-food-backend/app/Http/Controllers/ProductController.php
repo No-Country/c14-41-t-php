@@ -27,17 +27,6 @@ class ProductController extends Controller
         return $data;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $product = Product::create($request->all());
@@ -47,36 +36,28 @@ class ProductController extends Controller
             ]);
 }
 
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
+    public function destroy($id)
     {
-        //
+        Product::find($id)->delete();
+        return response()->json([
+            "success" => true,
+            "message" => "Producto eliminado con exito"
+        ], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
-    {
-        //
-    }
+    public function edit(Request $request, $id){
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->id_category = $request->id_category;
+        $product->image = $request->image;
+        $product->cooking_time = $request->cooking_time;
+        $product->availability = $request->availability;
+        $product->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
-    {
-        //
+        return response()->json([
+            "success" => true,
+        ], 200);
     }
 }
