@@ -9,9 +9,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post"></form>
                     <div class="mb-3">
-                        <input v-model="newCategory" type="text" class="form-control" id="exampleFormControlInput1"
+                        <input v-model="categoryName" type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Nombre de la categoría">
                     </div>
                 </div>
@@ -27,28 +26,31 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
 import axios from '@/plugins/axios'
-const newCategory = '';
 
-// watchEffect(() => {
-//         if (newCategory.value !== '' && newCategory.value.length > 3) {
-//             const newCategoryResult = newCategory.value.toUpperCase();
-//             // createNewCategory(newCategoryResult);
-//             console.log('watching input value', newCategoryResult)
-//         }
-//     })
+
+const categoryName = ref([]);
 
 const createNewCategory = async () => {
-    try {
-        const response = await axios.post('/categories/create', { newCategory });
 
-        if (response.data.success) {
-            console.log('New category created');
+    if ((categoryName.value != '' && categoryName.value.length > 3)) {
+        const newCategoryName = categoryName.value.toUpperCase();
+        console.log(newCategoryName);
+        try {
+            const response = await axios.post('/categories/create', { name: newCategoryName });
+
+            if (response.data.success) {
+                console.log('New category created');
+            }
+        } catch (error) {
+            console.error('There was an error creating the category ', error);
         }
-    } catch (error) {
-        console.error('There was an error creating the category ', error);
+        return
     }
-    console.log(newCategory)
+
+    alert('CODIFICAR BIEN')
+
 };
 
 </script>

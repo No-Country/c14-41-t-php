@@ -31,8 +31,8 @@
                         <td>{{ category.name }}</td>
                         <td>
                             <v-icon @click="clickEdit()" name="bi-pencil" scale="2.0" class="me-3 edit" fill="#0DCAF0" />
-                            <v-icon @click="clickRemove()" name="io-remove-circle-sharp" scale="2.0" class=" remove"
-                                fill="red" />
+                            <v-icon @click="clickRemove(category.id)" name="io-remove-circle-sharp" scale="2.0"
+                                class="remove" fill="red" />
                         </td>
                     </tr>
                 </tbody>
@@ -52,8 +52,8 @@ const urls = [
     'restaurant/info'
 ];
 let categories = ref([]);
-
 let restInfo = ref([]);
+//let removeIcon = ref([]);
 
 const getCategories = (async () => {
     try {
@@ -77,8 +77,15 @@ onMounted(() => {
 const clickEdit = () => {
     alert('editar producto')
 }
-const clickRemove = () => {
-    alert('Eliminar Categoria')
+const clickRemove = async (categoryId) => {
+    try {
+        const response = await axios.delete('categories/${categoryId}');
+        if (response.data.succes) {
+            console.log('The category number ', categoryId, 'was deleted successfully')
+        }
+    } catch (error) {
+        console.error('There was an error deleting the category', error);
+    }
 }
 
 </script>

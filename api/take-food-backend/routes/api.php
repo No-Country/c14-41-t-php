@@ -26,3 +26,6 @@ Route::post('/categories/create', [CategoriesController::class, 'create']);
 Route::get('/products', [ProductController::class, 'index']);
 
 Route::post('/crear-orden', [OrderController::class, 'crearOrden']);
+
+//Ruta para eliminar categoria
+Route::delete('categories/{id}', [CategoriesController::class, 'deleteCategory']);

@@ -22,13 +22,21 @@ class CategoriesController extends Controller
      */
     public function create(Request $request)
     {
-        $categories = Categories::create($request->all());
-
-        return response()->json([
-            "success" => true,
-            "message" => "Categoria creada exitosamente",
-        ], 201);
+        try {
+            $categories = Categories::create($request->all());
+    
+            return response()->json([
+                "success" => true,
+                "message" => "Categoria creada exitosamente",
+            ], 201);
+        } catch (\Exception $e) {
+            return response()->json([
+                "success" => false,
+                "message" => "Error creating category: " . $e->getMessage(),
+            ], 500);
+        }
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -68,6 +76,16 @@ class CategoriesController extends Controller
     public function destroy(Categories $categories)
     {
         //
+    }
+
+    public function deleteCategory($id){
+        $category = Category::findOrFail($id);
+        $category->delete();
+    
+        return response()->json([
+            "success" => true,
+            "message" => "Category deleted successfully",
+        ], 200);
     }
 
     private static $rules = [
