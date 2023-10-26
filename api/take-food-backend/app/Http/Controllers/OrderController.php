@@ -69,7 +69,7 @@ class OrderController extends Controller
         //
     }
 
-    /** ejemplo de datos a recibir
+    /**ejemplo de datos a recibir
         {
             "id_client": 1,
             "total": 100,
@@ -104,7 +104,7 @@ class OrderController extends Controller
         ]);
         // dd($request);
         // Usar una transacción para asegurar que ambas inserciones sean exitosas o ninguna se realice.
-        return \DB::transaction(function () use ($request) {
+        return \DB::transaction(function () use ($request)) {
 
             // Crear una nueva orden en la tabla 'orden'
             $orden = Order::create([

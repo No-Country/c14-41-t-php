@@ -10,14 +10,15 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input v-model="categoryName" type="text" class="form-control" id="exampleFormControlInput1"
+                        <input v-model="name" type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Nombre de la categoría">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form @submit.prevent="createNewCategory()">
+                    <form>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="submit" @click.prevent="createNewCategory()" class="btn btn-primary">Guardar</button>
+
                     </form>
                 </div>
             </div>
@@ -26,19 +27,16 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref } from 'vue'
 import axios from '@/plugins/axios'
+const name = ref('');
 
-
-const categoryName = ref([]);
 
 const createNewCategory = async () => {
 
-    if ((categoryName.value != '' && categoryName.value.length > 3)) {
-        const newCategoryName = categoryName.value.toUpperCase();
-        console.log(newCategoryName);
+    if ((name.value != '' && name.value.length > 3)) {
         try {
-            const response = await axios.post('/categories/create', { name: newCategoryName });
+            const response = await axios.post('/categories/create', { name: name.value });
 
             if (response.data.success) {
                 console.log('New category created');

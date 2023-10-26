@@ -28,6 +28,7 @@
       </div>
     </div>
     <CategoryModal />
+    <AddProducts />
   </main>
 </template>
 
@@ -35,6 +36,7 @@
 import TableProducts from '@/components/adminComponents/TableProducts';
 import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
 import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
+import AddProducts from '@/components/adminComponents/AddProducts.vue'
 </script>
 
 <style scoped>
