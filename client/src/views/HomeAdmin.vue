@@ -22,21 +22,22 @@
         <PrincipalPage />
       </div>
       <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-        <TableProducts />
+        <TableProducts :listProducts="products"/>
       </div>
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">Pedido
       </div>
     </div>
     <CategoryModal />
-    <AddProducts />
+    
+    
   </main>
 </template>
 
 <script setup>
-import TableProducts from '@/components/adminComponents/TableProducts';
-import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
-import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
-import AddProducts from '@/components/adminComponents/AddProducts.vue'
+  import TableProducts from '@/components/adminComponents/TableProducts';
+  import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
+  import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
+  
 </script>
 
 <style scoped>

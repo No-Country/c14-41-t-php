@@ -18,7 +18,8 @@ import { Splide, SplideSlide } from "@splidejs/vue-splide";
 import "@splidejs/vue-splide/css/skyblue";
 import ProductCard from "@/components/ProductCard.vue";
 import axios from "@/plugins/axios"
-import { onMounted, ref } from "vue";
+import { onMounted, ref} from "vue";
+
 
 let categories = ref([]);
 let products = ref([]);
@@ -35,7 +36,6 @@ const getProducts = (async () => {
 
     products.value = response.data.products
 
-    //console.log('data del back products', products.value)
 
     if (products.value && products.value.length > 0) {
       dataCategory = products.value.map(it => {
