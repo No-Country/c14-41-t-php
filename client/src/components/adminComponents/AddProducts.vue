@@ -47,7 +47,6 @@
         <div class="modal-footer">
           <button  type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           <button type="button" @click.prevent="postProduct()"  class="btn btn-primary">Guardar</button>
-          <button v-if="false" @click="handleClick">Prueba</button>
         </div>
       </div>
     </div>
@@ -60,7 +59,7 @@
   import useAuth from '@/store/auth'
 
   const store = useAuth()
-  const emit = defineEmits(['sayHi']);
+  const emit = defineEmits(['getProduct']);
 
   let image = ref ('')
   let name = ref('')
@@ -71,11 +70,6 @@
   let id_category = ref('1')
   let listCategories = ref('')
 
-  
-  const handleClick = () => {
-    emit("sayHi", 'Hola desde el padre');
-  }
-
   const reset = ()=>{
     image = ref('')
     name = ref('')
@@ -84,9 +78,7 @@
     cooking_time = ref('')
     availability = ref(false)
     id_category = ref('1')
-    listCategories = ref('')
   }
-
 
   const getCategories = ( async ()=>{
     try {
@@ -118,7 +110,7 @@
       })
         .then(response =>{
           store.notification(response.data.message)
-
+          emit("getProduct",);
           reset()
           
         })

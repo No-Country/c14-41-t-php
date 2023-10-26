@@ -65,7 +65,7 @@ class ProductController extends Controller
         
         $data['products'] = Product::findorfail($id);
 
-        $data['products']->id_category = $value->nameCategories;
+        // $data['products']->id_category = $value->nameCategories;
 
         return $data;
     }

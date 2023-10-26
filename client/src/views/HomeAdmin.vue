@@ -28,7 +28,8 @@
       </div>
     </div>
     <CategoryModal />
-    <AddProducts @sayHi="showAlert"/>
+    
+    
   </main>
 </template>
 
@@ -36,12 +37,7 @@
   import TableProducts from '@/components/adminComponents/TableProducts';
   import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
   import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
-  import AddProducts from '@/components/adminComponents/AddProducts.vue'
-
-
-  // function showAlert() {
-  //   alert('Test componente padre')
-  // }
+  
 </script>
 
 <style scoped>

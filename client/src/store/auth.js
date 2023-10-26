@@ -81,11 +81,12 @@ const useAuth = defineStore('auth', {
 
     reset() {
       this.token = null,
-        this.statusUser = false,
-        this.user = 'Not logged in',
-        this.feedback = '',
-        this.rol = null
-    }
+      this.statusUser = false,
+      this.user = 'Not logged in',
+      this.feedback = '',
+      this.rol = null
+    },
+
 
   }
 

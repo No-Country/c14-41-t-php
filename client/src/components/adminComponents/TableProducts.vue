@@ -2,10 +2,7 @@
   <div class="container table-responsive ">
     <div class="d-flex justify-content-between" >
       <h1>Mis Productos</h1>
-      <div>
-        <button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#AddProduct" >Agregar</button>
-        <button @click="getProducts()" type="button" class="btn btn-warning my-2" >Actualiizar</button>
-      </div>
+        <button type="button" class="btn btn-warning my-2" data-bs-toggle="modal" data-bs-target="#AddProduct" >Agregar</button>
     </div>
     <table class="table table-striped table-bordered border-primary align-middle table-hover">
       <thead>
@@ -29,22 +26,31 @@
           <td>$ {{ product.price }}</td>
           <td>{{ product.id_category }}</td>
           <td>{{ product.cooking_time }} Min</td>
-          <td>si</td>
+          <td>{{product.availability}}</td>
           <td>
-            <v-icon @click="clickEdit()" name="bi-pencil" scale="1.2" class="me-3 edit" fill="#0DCAF0" />
-            <!-- <v-icon @click="clickAdd()" name="io-add-circle-sharp" scale="1.2" class="me-3 add" fill="green" /> -->
-            <v-icon @click="clickRemove()" name="io-remove-circle-sharp" scale="1.2" class=" remove" fill="red" />
+            <v-icon data-bs-toggle="modal" data-bs-target="#EditProduct" @click="clickEdit(product.id)" name="bi-pencil" scale="1.2" class="me-3 edit" fill="#0DCAF0" />
+
+            <v-icon @click="clickRemove(product.id)" name="io-remove-circle-sharp" scale="1.2" class=" remove" fill="red" />
           </td>
         </tr>
         <!-- Agrega más filas según sea necesario -->
       </tbody>
     </table>
+    <EditarProduct :="idProduc" />
+    <AddProducts @getProduct="getProducts" />
   </div>
 </template>
 
 <script setup>
-  import { ref, onMounted } from 'vue';
+  import { ref, onMounted} from 'vue';
   import axios from "@/plugins/axios";
+  import EditarProduct from '@/components/adminComponents/EditarProduct.vue'
+  import AddProducts from '@/components/adminComponents/AddProducts.vue'
+  import useProducto from '@/store/producto'
+
+  const storeProducto = useProducto()
+  
+
 
   onMounted(() => {
     getProducts()
@@ -64,18 +70,19 @@
   })
 
   //Fuciones para las acciones del crud
-  const clickEdit = () => {
-    alert('editar producto')
+  const clickEdit = (id) => {
+  storeProducto.getProducto(id)
   }
-  // const clickAdd = () => {
-  //   alert('Agregar producto')
-  // }
-  const clickRemove = () => {
-    alert('Eliminar producto')
+  const clickRemove = async(id) => {
+    try {
+      const response = await axios.delete(`products/destroy/${id}`)
+      alert(response.data.message) 
+      getProducts()
+    } catch (error) {
+      console.error('Error al obtener producto', error);
+    }
   }
-  // function showAlert(){
-  //   alert('mostrar esto')
-  // }
+
 </script>
 
 <style scoped>
