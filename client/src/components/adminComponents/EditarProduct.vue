@@ -45,7 +45,7 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-secondary" @click="closeModal(), reset()">Cerrar</button>
-            <button type="button" class="btn btn-primary">Guardar</button>
+            <button type="button"  @click="putProduct(storeProduct.id), closeModal()" class="btn btn-primary">Guardar</button>
           </div>
         </div>
       </div>
@@ -57,9 +57,9 @@
   import { defineProps, defineEmits, onMounted, ref, watch } from 'vue'
   import axios from '@/plugins/axios';
   import useProduct from '@/store/producto'
-  // import useAuth from '@/store/auth'
+  import useAuth from '@/store/auth'
   
-  // const store = useAuth()
+  const store = useAuth()
   const storeProduct = useProduct()
 
   const props = defineProps(["isVisible"]);
@@ -94,6 +94,40 @@
     }
   })
 
+  const putProduct = (async (id) => {
+
+    if (name.value == '') {
+      store.notification('Nombre del producto es requerido')
+      return
+    }
+    if (price.value == '') {
+      store.notification('El precio del producto es requerido')
+      return
+    }
+    try {
+      await axios.put(`products/edit/${id}`, {
+        image: image.value.value,
+        name: name.value.value,
+        description: description.value.value,
+        price: price.value.value,
+        cooking_time: cooking_time.value.value,
+        id_category: id_category.value.value,
+        availability: availability.value.value
+      })
+        .then(response => {
+          store.notification(response.data.message)
+
+          reset()
+          emit("getProduct");
+        })
+        .catch((error) => {
+          console.log("Error en Post Add Product", error)
+        })
+
+    } catch (error) {
+      console.log('Error cretate_producto', error)
+    }
+  })
   const reset = () => {
     image.value = ''
     name.value = ''
@@ -110,13 +144,6 @@
   })
 
   const llenarCampos = (() => {
-      console.log(storeProduct.image)
-      console.log(storeProduct.name)
-      console.log(storeProduct.description)
-      console.log(storeProduct.price)
-      console.log(storeProduct.cooking_time)
-      console.log(storeProduct.availability)
-      console.log(storeProduct.id_category)
 
     image.value = ref(storeProduct.image)
     name.value = ref(storeProduct.name)
