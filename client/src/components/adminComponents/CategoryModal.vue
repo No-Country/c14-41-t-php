@@ -9,17 +9,16 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post"></form>
                     <div class="mb-3">
                         <input v-model="name" type="text" class="form-control" id="exampleFormControlInput1"
                             placeholder="Nombre de la categoría">
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form >
+                    <form>
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
                         <button type="submit" @click.prevent="createNewCategory()" class="btn btn-primary">Guardar</button>
-                      
+
                     </form>
                 </div>
             </div>
@@ -30,26 +29,27 @@
 <script setup>
 import { ref } from 'vue'
 import axios from '@/plugins/axios'
-const name =ref('');
+const name = ref('');
 
 
 const createNewCategory = async () => {
- 
-  if((name.value !='' && name.value.length > 3) ){
-    try {
-      const response = await axios.post('/categories/create', { name: name.value });
 
-      if (response.data.success) {
-        console.log('New category created');
-      }
-    } catch (error) {
-      console.error('There was an error creating the category ', error);
+    if ((name.value != '' && name.value.length > 3)) {
+        const nameToUpper = name.value.toUpperCase();
+        try {
+            const response = await axios.post('/categories/create', { name: nameToUpper });
+
+            if (response.data.success) {
+                alert('Nueva categoria creada');
+            }
+        } catch (error) {
+            console.error('There was an error creating the category ', error);
+        }
+        return
     }
-    return
-  }
-  
-  alert('CODIFICAR BIEN')
-    
+
+    alert('El campo no debe estar vacio')
+
 };
 
 </script>

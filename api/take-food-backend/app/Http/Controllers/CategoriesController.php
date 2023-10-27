@@ -29,6 +29,7 @@ class CategoriesController extends Controller
             "message" => "Categoria creada exitosamente",
         ], 201);
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -82,6 +83,16 @@ class CategoriesController extends Controller
             "message" => "Categoria eliminada exitosamente",
         ], 200);
     }
+
+    // public function deleteCategory($id){
+    //     $category = Category::findOrFail($id);
+    //     $category->delete();
+    
+    //     return response()->json([
+    //         "success" => true,
+    //         "message" => "Category deleted successfully",
+    //     ], 200);
+    // }
 
     private static $rules = [
         'name' => 'required'
