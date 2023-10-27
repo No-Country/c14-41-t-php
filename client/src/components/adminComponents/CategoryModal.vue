@@ -35,11 +35,12 @@ const name = ref('');
 const createNewCategory = async () => {
 
     if ((name.value != '' && name.value.length > 3)) {
+        const nameToUpper = name.value.toUpperCase();
         try {
-            const response = await axios.post('/categories/create', { name: name.value });
+            const response = await axios.post('/categories/create', { name: nameToUpper });
 
             if (response.data.success) {
-                console.log('New category created');
+                alert('Nueva categoria creada');
             }
         } catch (error) {
             console.error('There was an error creating the category ', error);
@@ -47,7 +48,7 @@ const createNewCategory = async () => {
         return
     }
 
-    alert('CODIFICAR BIEN')
+    alert('El campo no debe estar vacio')
 
 };
 

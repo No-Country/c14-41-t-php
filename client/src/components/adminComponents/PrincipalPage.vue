@@ -31,8 +31,8 @@
                         <td>{{ category.name }}</td>
                         <td>
                             <v-icon @click="clickEdit()" name="bi-pencil" scale="2.0" class="me-3 edit" fill="#0DCAF0" />
-                            <v-icon @click="clickRemove(category.id)" name="io-remove-circle-sharp" scale="2.0"
-                                class="remove" fill="red" />
+                            <v-icon @click="clickRemove(category.id, category.name)" name="io-remove-circle-sharp"
+                                scale="2.0" class="remove" fill="red" />
                         </td>
                     </tr>
                 </tbody>
@@ -77,15 +77,22 @@ onMounted(() => {
 const clickEdit = () => {
     alert('editar producto')
 }
-const clickRemove = async (categoryId) => {
-    try {
-        const response = await axios.delete('categories/${categoryId}');
-        if (response.data.succes) {
-            console.log('The category number ', categoryId, 'was deleted successfully')
+const clickRemove = async (id, name) => {
+    console.log('el id es: ', id);
+    const confirmed = window.confirm("Estas seguro de que desea eliminar la categoria: " + name + "?");
+    if (confirmed) {
+        try {
+            const response = await axios.delete(`categories/delete/${id}`);
+            if (response.data.success) {
+                alert("Categoria numero: " + id + " se elimino correctamente")
+                console.log('The category number ', id, 'was deleted successfully');
+            }
+        } catch (error) {
+            console.error('There was an error deleting the category', error);
         }
-    } catch (error) {
-        console.error('There was an error deleting the category', error);
+
     }
+
 }
 
 </script>

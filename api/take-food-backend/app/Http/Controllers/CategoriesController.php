@@ -84,15 +84,15 @@ class CategoriesController extends Controller
         ], 200);
     }
 
-    public function deleteCategory($id){
-        $category = Category::findOrFail($id);
-        $category->delete();
+    // public function deleteCategory($id){
+    //     $category = Category::findOrFail($id);
+    //     $category->delete();
     
-        return response()->json([
-            "success" => true,
-            "message" => "Category deleted successfully",
-        ], 200);
-    }
+    //     return response()->json([
+    //         "success" => true,
+    //         "message" => "Category deleted successfully",
+    //     ], 200);
+    // }
 
     private static $rules = [
         'name' => 'required'
