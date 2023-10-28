@@ -1,6 +1,6 @@
 <template>
-    <!-- Modal -->
-    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <!-- Modal new category -->
+    <div class="modal fade" id="newCategoryModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="staticBackdropLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog_custom">
             <div class="modal-content">
@@ -15,11 +15,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <form>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                        <button type="submit" @click.prevent="createNewCategory()" class="btn btn-primary">Guardar</button>
-
-                    </form>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="submit" @click.prevent="createNewCategory()" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>

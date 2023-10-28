@@ -30,14 +30,15 @@
                     <tr v-for="category in categories" :key="category.id">
                         <td>{{ category.name }}</td>
                         <td>
-                            <v-icon @click="clickEdit()" name="bi-pencil" scale="2.0" class="me-3 edit" fill="#0DCAF0" />
+                            <v-icon data-bs-toggle="modal" data-bs-target="#editCategoryModal" name="bi-pencil" scale="2.0"
+                                class="me-3 edit" fill="#0DCAF0" />
                             <v-icon @click="clickRemove(category.id, category.name)" name="io-remove-circle-sharp"
                                 scale="2.0" class="remove" fill="red" />
                         </td>
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Nueva
+            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newCategoryModal">Nueva
                 categoria</button>
         </div>
     </div>
@@ -74,9 +75,9 @@ onMounted(() => {
     getCategories()
 })
 
-const clickEdit = () => {
-    alert('editar producto')
-}
+// const clickEdit = () => {
+//     alert('editar producto')
+// }
 const clickRemove = async (id, name) => {
     console.log('el id es: ', id);
     const confirmed = window.confirm("Estas seguro de que desea eliminar la categoria: " + name + "?");
