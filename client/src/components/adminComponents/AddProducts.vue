@@ -110,7 +110,7 @@
       })
         .then(response =>{
           store.notification(response.data.message)
-          emit("getProduct",);
+          emit("getProduct");
           reset()
           
         })

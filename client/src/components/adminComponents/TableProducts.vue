@@ -28,7 +28,7 @@
           <td>{{ product.cooking_time }} Min</td>
           <td>{{product.availability}}</td>
           <td>
-            <v-icon data-bs-toggle="modal" data-bs-target="#EditProduct" @click="clickEdit(product.id)" name="bi-pencil" scale="1.2" class="me-3 edit" fill="#0DCAF0" />
+            <v-icon  @click="clickEdit(product.id)" name="bi-pencil" scale="1.2" class="me-3 edit" fill="#0DCAF0" />
 
             <v-icon @click="clickRemove(product.id)" name="io-remove-circle-sharp" scale="1.2" class=" remove" fill="red" />
           </td>
@@ -36,21 +36,32 @@
         <!-- Agrega más filas según sea necesario -->
       </tbody>
     </table>
-    <EditarProduct :="idProduc" />
+
     <AddProducts @getProduct="getProducts" />
+    <EditarProduct :is-visible="modalVisible" @close="closeModal" @getProduct="getProducts" />
   </div>
 </template>
 
 <script setup>
   import { ref, onMounted} from 'vue';
   import axios from "@/plugins/axios";
-  import EditarProduct from '@/components/adminComponents/EditarProduct.vue'
   import AddProducts from '@/components/adminComponents/AddProducts.vue'
+  import EditarProduct from '@/components/adminComponents/EditarProduct.vue'
   import useProducto from '@/store/producto'
 
-  const storeProducto = useProducto()
-  
 
+  const storeProducto = useProducto()
+  let showEdit = ref(false)
+
+  let modalVisible = ref(false)
+
+  const  openModal=() => {
+    modalVisible.value = true;
+  }
+
+  const closeModal =()=> {
+    modalVisible.value = false;
+  }
 
   onMounted(() => {
     getProducts()
@@ -69,9 +80,14 @@
 
   })
 
+ 
   //Fuciones para las acciones del crud
   const clickEdit = (id) => {
+    
+  showEdit.value = !showEdit.value
   storeProducto.getProducto(id)
+  openModal()
+ 
   }
   const clickRemove = async(id) => {
     try {
