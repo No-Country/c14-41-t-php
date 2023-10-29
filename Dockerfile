@@ -17,7 +17,7 @@ FROM docker.io/bitnami/laravel:10
 COPY ./api/take-food-backend /app
 
 # Instala las dependencias y compila la aplicación (esto puede variar según tu aplicación)
-# RUN composer install --no-interaction
+RUN composer install 
 
 # Establece el directorio de trabajo
 WORKDIR /app
