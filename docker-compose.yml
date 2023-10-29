@@ -1,0 +1,93 @@
+version: '2'
+
+services:
+  mariadb:
+    image: docker.io/bitnami/mariadb:11.1
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_USER=bn_myapp
+      - MARIADB_DATABASE=bitnami_myapp
+
+  myapp:
+    image: docker.io/bitnami/laravel:10
+    ports:
+      - '8000:8000'
+    environment:
+      - DB_HOST=mariadb
+      - DB_PORT=3306
+      - DB_USERNAME=bn_myapp
+      - DB_DATABASE=bitnami_myapp
+    volumes:
+      - './api/take-food-backend:/app'
+    depends_on:
+      - mariadb
+    # command: >
+    #   sh -c "php artisan migrate && php artisan db:seed && php artisan serve"
+    
+    
+      
+  # vueapp:
+  #   image: node:latest  # Utiliza la imagen oficial de Node.js para construir la aplicación Vue.js
+  #   working_dir: /app
+  #   volumes:
+  #     - './client:/app'  # Reemplaza './path/to/your/vue/app' con la ruta a tu aplicación Vue.js
+  #   command: ['npm', 'run', 'serve']  # Comando para ejecutar el servidor de desarrollo de Vue.js
+  #   ports:
+  #     - '8080:8080'  # Puerto en el que se ejecutará la aplicación Vue.js
+  #   depends_on:
+  #     - myapp 
+
+# version: '3.3'
+# services:
+#   backend:
+#     build: ./api/take-food-backend
+#     ports:
+#       - "80:80"
+#     volumes:
+#       - ./api/take-food-backend:/usr/share/nginx/html
+#     restart: always
+#     networks:
+#       - docker
+
+#   database:
+#     image: mysql:latest
+#     restart: always
+#     environment:
+#       MYSQL_ROOT_PASSWORD: docker
+#       MYSQL_DATABASE: take_food_backend
+#       MYSQL_PASSWORD: docker
+#     ports:
+#       - 3306:3306
+#     networks:
+#       - docker
+ 
+# networks:
+#   docker:
+#     driver: bridge
+
+# frontend:
+  #   build: ./client
+  #   volumes:
+  #     - ./client:/app
+  #   ports:
+  #     - "80:80"
+  #   depends_on:
+  #     - backend
+  #   networks:
+  #     - docker
+
+ #   depends_on:
+  #     - database
+
+  # database:
+  #   image: mysql:latest
+  #   hostname: mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: password
+  #     MYSQL_DATABASE: take_food_backend
+  #     MYSQL_PASSWORD: root
+  #   ports:
+  #     - "33:3306"
+  #   networks:
+  #     - docker

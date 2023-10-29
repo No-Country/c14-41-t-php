@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class ExampleController extends Controller
 {
     public function index(){
-        return response()->json("Hello World", 200);
+        return view("welcome");
+        // return response()->json("Hello World", 200);
     }
 
     public function noAccess()
