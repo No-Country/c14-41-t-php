@@ -1,14 +1,7 @@
-# Etapa 1: Construir la aplicación Laravel y copiar los scripts SQL
-FROM docker.io/bitnami/laravel:10 AS builder
+# Segunda etapa: configurar el entorno de ejecución
+FROM docker.io/bitnami/mariadb:11.1 AS builder
 
-COPY ./api/take-food-backend /app
-COPY ./sql-scripts /docker-entrypoint-initdb.d
-
-RUN composer install --no-interaction
-
-# Etapa 2: Configurar el entorno de ejecución
-FROM docker.io/bitnami/mariadb:11.1
-
+# Configura las variables de entorno
 ENV ALLOW_EMPTY_PASSWORD=yes
 ENV MARIADB_USER=bn_myapp
 ENV MARIADB_DATABASE=bitnami_myapp
@@ -17,14 +10,26 @@ ENV DB_PORT=3306
 ENV DB_USERNAME=bn_myapp
 ENV DB_DATABASE=bitnami_myapp
 
-# Copiar solo los artefactos necesarios de la etapa de construcción anterior
-COPY --from=builder /app /app
-COPY --from=builder /docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
+# Establece la imagen base
+FROM docker.io/bitnami/laravel:10
 
+# Copia los archivos de la etapa anterior
+COPY --from=builder . /app
+
+# Copia el código de la aplicación a la imagen
+COPY ./api/take-food-backend /app
+
+# Copia los scripts SQL al contenedor
+COPY ./sql-scripts /docker-entrypoint-initdb.d
+
+# Instala las dependencias y compila la aplicación (esto puede variar según tu aplicación)
+RUN composer install 
+
+# Establece el directorio de trabajo
 WORKDIR /app
 
+# Expone el puerto
 EXPOSE 8000
-
 
 # Inicia tu aplicación (esto puede variar según tu aplicación)
 # CMD ["php", "artisan", "serve", "--host=0.0.0.0", "--port=8000"]
