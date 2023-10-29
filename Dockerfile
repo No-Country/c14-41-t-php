@@ -10,6 +10,9 @@ ENV DB_PORT=3306
 ENV DB_USERNAME=bn_myapp
 ENV DB_DATABASE=bitnami_myapp
 
+# Copia los scripts SQL al contenedor
+COPY ./sql-scripts /docker-entrypoint-initdb.d
+
 # Establece la imagen base
 FROM docker.io/bitnami/laravel:10
 
