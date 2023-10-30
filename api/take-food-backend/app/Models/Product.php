@@ -16,8 +16,8 @@ class Product extends Model
         return $this->belongsTo(Categories::class, 'id_category');
     }
 
-    public function getNameCategoriesAttribute()
-    {
-        return $this->Categories->name;
-    }
+    // public function getNameCategoriesAttribute()
+    // {
+    //     return $this->Categories->name;
+    // }
 }
