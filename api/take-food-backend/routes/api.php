@@ -5,8 +5,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\RestaurantController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ExampleController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::get('/', [ExampleController::class, 'index']);
 
 //------USUARIO------
 Route::post('/user/create', [UserController::class, 'createUser']);//Ruta para crear usuario
