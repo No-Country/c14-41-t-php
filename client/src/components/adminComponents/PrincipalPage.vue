@@ -1,3 +1,4 @@
+
 <template>
     <div class="general-container">
         <div class="card bg-warning" v-for="info in restInfo" :key="info.id">
