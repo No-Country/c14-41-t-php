@@ -30,7 +30,8 @@
                     <tr v-for="category in categories" :key="category.id">
                         <td>{{ category.name }}</td>
                         <td>
-                            <v-icon @click="clickEdit()" name="bi-pencil" scale="2.0" class="me-3 edit" fill="#0DCAF0" />
+                            <v-icon @click="clickEdit(category.id)" name="bi-pencil" scale="2.0" class="me-3 edit"
+                                fill="#0DCAF0" />
                             <v-icon @click="clickRemove(category.id, category.name)" name="io-remove-circle-sharp"
                                 scale="2.0" class="remove" fill="red" />
                         </td>
@@ -41,7 +42,8 @@
                 categoria
             </button>
         </div>
-        <EditCategoryModal :modalVisible="clickEdit" v-if="modalVisible" />
+        <EditCategoryModal :modalVisible="clickEdit" v-if="modalVisible" @getCategories="getCategories"
+            @clickEdit="clickEdit" />
     </div>
 </template>
 
@@ -49,15 +51,17 @@
 import { ref, onMounted } from 'vue';
 import axios from '@/plugins/axios';
 import EditCategoryModal from './EditCategoryModal.vue';
+import useCategory from '@/store/category';
 
 
-let modalVisible = ref(false)
-
+const storedCategory = useCategory();
 
 const urls = [
     'categories',
     'restaurant/info'
 ];
+
+let modalVisible = ref(false)
 let categories = ref([]);
 let restInfo = ref([]);
 
@@ -81,24 +85,24 @@ onMounted(() => {
     getCategories()
 })
 
-const clickEdit = () => {
-    console.log('you clicked on the icon');
-    modalVisible.value = !modalVisible.value
+const clickEdit = (id) => {
 
+    modalVisible.value = !modalVisible.value
+    storedCategory.getCategory(id)
 }
 
 const clickRemove = async (id, name) => {
-    console.log('el id es: ', id);
     const confirmed = window.confirm("Estas seguro de que desea eliminar la categoria: " + name + "?");
     if (confirmed) {
         try {
             const response = await axios.delete(`categories/delete/${id}`);
             if (response.data.success) {
                 alert("Categoria numero: " + id + " se elimino correctamente")
-                console.log('The category number ', id, 'was deleted successfully');
             }
         } catch (error) {
             console.error('There was an error deleting the category', error);
+        } finally {
+            getCategories()
         }
 
     }

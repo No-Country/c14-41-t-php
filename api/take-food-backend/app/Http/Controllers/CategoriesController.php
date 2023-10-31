@@ -42,9 +42,14 @@ class CategoriesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Categories $categories)
-    {
-        //
+
+     public function show($id){
+        
+        $data['categories'] = Categories::findorfail($id);
+
+        // $data['products']->id_category = $value->nameCategories;
+
+        return $data;
     }
 
     /**
@@ -118,4 +123,6 @@ class CategoriesController extends Controller
 
         return redirect('admin')->with("menssage", "Cambios Realizados");
     }
+
+    
 }

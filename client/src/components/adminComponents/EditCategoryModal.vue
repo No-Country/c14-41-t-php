@@ -9,14 +9,14 @@
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
-                        <input v-model="name" type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Nombre de la categoría">
+                        <input v-model="name.value" type="text" class="form-control" id="exampleFormControlInput1"
+                            :placeholder="name.value">
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" @click="props.modalVisible" class="btn btn-secondary"
                         data-bs-dismiss="modal">Cerrar</button>
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" @click="putCategory(storedCategory.id)" class="btn btn-primary">Guardar</button>
                 </div>
             </div>
         </div>
@@ -24,10 +24,48 @@
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+//importations
+import axios from '@/plugins/axios';
+import { defineProps, defineEmits, ref } from 'vue';
+import useCategory from '@/store/category';
 
-const props = defineProps(['modalVisible'])
+//defining variables
+const props = defineProps(['modalVisible']);
+const storedCategory = useCategory();
+const emits = defineEmits(['getCategories', 'clickEdit'])
 
+let name = ref('');
+
+//storing the category's name
+name.value = ref(storedCategory.name);
+
+//put request
+
+const putCategory = (async (id) => {
+
+    if (name.value == '') {
+        alert('Nombre de la categoria es requerido')
+    } else
+        try {
+            await axios.put(`categories/edit/${id}`, {
+                name: name.value.value
+            }).then(response => {
+                console.log(response.data.message)
+            }).catch(error => console.log("there was an error updating the category: ", error))
+
+        } catch (error) {
+            console.log('Error al editar la categoria', error);
+        } finally {
+            alert('La categoria se modifico');
+            reset();
+            emits("getCategories", "clickEdit");
+        }
+})
+
+const reset = () => {
+    name.value = ''
+    storedCategory.reset()
+}
 </script>
 
 <style scoped>

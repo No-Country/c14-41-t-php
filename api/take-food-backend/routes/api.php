@@ -20,7 +20,8 @@ Route::get('/restaurant/info', [RestaurantController::class, 'general_info']);
 Route::put('/restaurant/info/{id}', [RestaurantController::class, 'general_info_edit']);
 //------CATEGORIAS PRODUCTOS------
 Route::get('/categories', [CategoriesController::class, 'categories']);
-Route::put('/categories/{id}', [CategoriesController::class, 'categories_edit']);
+Route::get('/categories/show/{id}', [CategoriesController::class, 'show']);
+Route::put('/categories/edit/{id}', [CategoriesController::class, 'categories_edit']);
 Route::post('/categories/create', [CategoriesController::class, 'create']);
 Route::delete('/categories/delete/{id}', [CategoriesController::class, 'destroy']);
 //------PRODUCTOS------
