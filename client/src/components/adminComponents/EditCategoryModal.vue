@@ -26,7 +26,7 @@
 <script setup>
 //importations
 import axios from '@/plugins/axios';
-import { defineProps, defineEmits, ref } from 'vue';
+import { defineProps, defineEmits, ref, watch } from 'vue';
 import useCategory from '@/store/category';
 
 //defining variables
@@ -37,7 +37,15 @@ const emits = defineEmits(['getCategories', 'clickEdit'])
 let name = ref('');
 
 //storing the category's name
-name.value = ref(storedCategory.name);
+const getCategoryInfo = () => {
+    name.value = ref(storedCategory.name);
+}
+
+watch(() => {
+    if (props.modalVisible) {
+        getCategoryInfo()
+    }
+})
 
 //put request
 
