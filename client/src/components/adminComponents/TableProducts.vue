@@ -9,6 +9,7 @@
       <thead>
         <tr>
           <th scope="col">ID</th>
+          <th scope="col">imagen</th>
           <th scope="col">Nombre</th>
           <th scope="col">Descripción</th>
           <th scope="col">Precio</th>
@@ -22,6 +23,7 @@
       <tbody>
         <tr v-for="product in products" :key="product.id">
           <td>{{ product.id }}</td>
+          <td>{{ product.image }}</td>
           <td>{{ product.name }}</td>
           <td>{{ product.description }}</td>
           <td>$ {{ product.price }}</td>
@@ -86,7 +88,7 @@ const getProducts = (async () => {
 
 //Fuciones para las acciones del crud
 const clickEdit = (id) => {
-
+console.log(id)
   showEdit.value = !showEdit.value
   storeProducto.getProducto(id)
   openModal()

@@ -37,10 +37,11 @@ const useAuth = defineStore('auth', {
 
           if (response.data.success) {
             this.token = response.data.token
+            this.rol = response.data.rol
             this.statusUser = response.data.success
             this.user = response.data.name + ' ' + response.data.lastName
           }
-
+          
         })
         .catch((error) => {
           console.log('ERROR al registrarse', error)
@@ -60,9 +61,11 @@ const useAuth = defineStore('auth', {
           if (response.data.status) {
             //Verdadero
             this.token = response.data.token
+            this.rol = response.data.rol
             this.statusUser = response.data.status
             this.user = response.data.name + ' ' + response.data.lastName
           }
+          
         })
         .catch((error) => {
           console.log('Error en Login', error.response.data.message) // en caso de poner un mail erroneo Sale por aca!

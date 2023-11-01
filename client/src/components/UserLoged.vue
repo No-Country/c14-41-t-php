@@ -2,17 +2,16 @@
   <div class="badge rounded-pill text-light">
     <div class=" row mx-2 d-flex-rows justify-content-center align-items-center" id="componentBadge">
 
-      <router-link to="/admin">Go to Admin</router-link>
       <div class="col">
+        <router-link :to="{ name: 'admin' }"><v-icon v-if="store.statusUser && store.rol == 1" scale="1.8" name="si-pagespeedinsights"> </v-icon></router-link>
+        
         <v-icon scale="1.8" name="fa-user-circle" />
-        <span v-if="store.statusUser" class="nameUser" data-bs-toggle="modal" data-bs-target="#staticBackdrop">{{
-          store.user.email }}</span>
-        <span v-else class="nameUser"><router-link :to="{ name: 'login' }">{{ store.user.email }}</router-link></span>
         <span v-if="store.statusUser" class="nameUser">{{ store.user }}</span>
         <span v-else class="nameUser"><router-link :to="{ name: 'login' }">{{ store.user }}</router-link></span>
-      </div>
+        <span v-if="store.statusUser && store.rol == 1" class="nameUser" @click="logOut()">| Cerrar Sesión</span>
+      </div>  
 
-      <div v-if="store.statusUser" class="col">
+      <div v-if="store.statusUser && store.rol == 0" class="col">
         <div class="btn-group dropstart">
           <v-icon data-bs-toggle="dropdown" aria-expanded="false" class="dropdown-toggle" hover animation="wrench"
             id="SidebarIcon" type="btn" scale="1.4" name="bi-arrow-down-circle" />
@@ -27,7 +26,7 @@
 
       </div>
 
-      <div class="col">
+      <div v-if="(store.statusUser == false && store.rol == null) || (store.statusUser && store.rol == 0 ) " class="col">
         <div class="position-relative" style="width: 30px;">
           <a type="button" class="text-light position-relative" data-bs-toggle="offcanvas"
             data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" href="#"><v-icon name="md-addshoppingcart"
@@ -57,7 +56,6 @@
 <script setup>
 import useAuth from '@/store/auth';
 import ProducAdd from '@/components/ProductAdd.vue'
-//import router from '@/router'
 
 const store = useAuth()
 

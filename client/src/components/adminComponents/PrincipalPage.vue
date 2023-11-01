@@ -38,16 +38,18 @@
                     </tr>
                 </tbody>
             </table>
-            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newCategoryModal">Nueva
+            <button  type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#newCategoryModal">Nueva
                 categoria
             </button>
-        </div>
+        </div>  
         <EditCategoryModal :modalVisible="clickEdit" v-if="modalVisible" @getCategories="getCategories"
             @clickEdit="clickEdit" />
+            <CategoryModal @getCategories="getCategories " />
     </div>
 </template>
 
 <script setup>
+import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
 import { ref, onMounted } from 'vue';
 import axios from '@/plugins/axios';
 import EditCategoryModal from './EditCategoryModal.vue';
@@ -89,6 +91,7 @@ const clickEdit = (id) => {
 
     modalVisible.value = !modalVisible.value
     storedCategory.getCategory(id)
+  
 }
 
 const clickRemove = async (id, name) => {
