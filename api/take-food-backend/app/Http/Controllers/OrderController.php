@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use App\Models\Order_Product;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -17,54 +18,6 @@ class OrderController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Order $order)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Order $order)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Order $order)
     {
         //
     }
@@ -102,10 +55,9 @@ class OrderController extends Controller
             'productos.*.id_product' => 'required|exists:products,id',
             'productos.*.quantity' => 'required|integer|min:1'
         ]);
-        // dd($request);
         // Usar una transacción para asegurar que ambas inserciones sean exitosas o ninguna se realice.
-        return \DB::transaction(function () use ($request)) {
-
+        DB::beginTransaction();
+        try {
             // Crear una nueva orden en la tabla 'orden'
             $orden = Order::create([
                 'id_client' => $request->id_client,
@@ -113,8 +65,7 @@ class OrderController extends Controller
                 'observation' => $request->observation,
                 'status' => 'I'
             ]);
-
-            // Insertar productos relacionados en la tabla 'order_product'
+            //Insertar productos relacionados en la tabla 'order_product'
             foreach ($request->productos as $producto) {
                 Order_Product::create([
                     'id_order' => $orden->id,
@@ -122,10 +73,14 @@ class OrderController extends Controller
                     'quantity' => $producto['quantity']
                 ]);
             }
+            DB::commit();
 
             // Devolver una respuesta de éxito
             return response()->json(['message' => 'Orden creada exitosamente'], 201);
-
-        }, 2); // El segundo argumento de la transacción (2) indica el nivel de aislamiento.
+        } 
+        catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 }
