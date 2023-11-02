@@ -20,11 +20,11 @@
 import { defineProps } from 'vue'
 import useCarrito from '@/store/carrito'
 
-import empanadas from '@/assets/products/empanada.jpg'
+import empanadas from '@/assets/products/empanada.png'
 import Pizzas from '@/assets/products/pizza.jpg'
-import hamburguesas from '@/assets/products/hamburguesa.jpg'
+import hamburguesas from '@/assets/products/burger.png'
 import pastas from '@/assets/products/pastas.jpg'
-import sandwiches from '@/assets/products/sandwiches.jpg'
+import sandwiches from '@/assets/products/sandwhich.png'
 
 const storeCarrito = useCarrito()
 
@@ -58,4 +58,5 @@ const AddCarrito = (itemSelected) => {
   transition: all 0.3s ease;
   background-color: rgb(245, 192, 58);
 }
+
 </style>
