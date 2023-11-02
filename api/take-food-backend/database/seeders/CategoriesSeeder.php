@@ -14,19 +14,19 @@ class CategoriesSeeder extends Seeder
     public function run(): void
     {
         Categories::create([
-                "name"=> "Hamburguesas",
+            "name"=> "EMPANADAS",
         ]);
         Categories::create([
-            "name"=> "Pizzas",
+            "name"=> "PIZZAS",
         ]);
         Categories::create([
-            "name"=> "Empanadas",
+            "name"=> "HAMBURGUESAS",
         ]);
         Categories::create([
-            "name"=> "Lomitos",
+            "name"=> "PASTAS",
         ]);
         Categories::create([
-            "name"=> "Papas",
+            "name"=> "SANGUCHES",
         ]);
     }
 }
