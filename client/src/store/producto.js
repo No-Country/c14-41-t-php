@@ -1,7 +1,7 @@
 import axios from "@/plugins/axios"
 import { defineStore } from 'pinia'
 
-const useProducto = defineStore('carrito',{
+const useProducto = defineStore('producto',{
   state: ()=>{
     return {
       id:'',
@@ -26,7 +26,11 @@ const useProducto = defineStore('carrito',{
         this.description = response.data.products.description
         this.price = response.data.products.price
         this.cooking_time = response.data.products.cooking_time
-        this.availability = response.data.products.availability
+        if(response.data.products.availability == 1){
+        this.availability= true
+        }else{
+          this.availability= false
+        }
         this.id_category = response.data.products.id_category
     
       } catch (error) {

@@ -8,8 +8,19 @@
           </div>
           <div class="modal-body">
             <div class="row justify-content-center text-center">
-              <div class="col-12" style="background-color: antiquewhite;">
+              <div class="col-6" style="background-color: antiquewhite;">
                 foto {{image}}
+              </div>
+              <div class="col-6" style="background-color: antiquewhite;">
+                <select v-model="image.value" class="form-select" aria-label="Default select example">
+                  <option value="@/assets/products/pizza1.jpg">Pizza1</option>
+                  <option value="@/assets/products/empanada1.jpg">Empanada1</option>
+                  <option value="@/assets/products/empanada2.jpg">Empanadad2</option>
+                  <option value="@/assets/products/hamburguesa1.jpg">Hamburguesa1</option>
+                  <option value="@/assets/products/hamburguesa2.jpg">Hamburguesa2</option>
+                  <option value="@/assets/products/milanesa1.jpg">Milanesas1</option>
+      
+                </select>
               </div>
             </div>
             
@@ -113,6 +124,7 @@
         cooking_time: cooking_time.value.value,
         id_category: id_category.value.value,
         availability: availability.value.value
+
       })
         .then(response => {
           store.notification(response.data.message)

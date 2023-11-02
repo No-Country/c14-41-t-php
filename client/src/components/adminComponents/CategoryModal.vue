@@ -24,10 +24,12 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, defineEmits } from 'vue'
 import axios from '@/plugins/axios'
+
 const name = ref('');
 
+    const emit = defineEmits(['getCategories']);
 
 const createNewCategory = async () => {
 
@@ -38,6 +40,7 @@ const createNewCategory = async () => {
 
             if (response.data.success) {
                 alert('Nueva categoria creada');
+                emit("getCategories");
             }
         } catch (error) {
             console.error('There was an error creating the category ', error);

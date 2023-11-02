@@ -36,16 +36,14 @@ const emits = defineEmits(['getCategories', 'clickEdit'])
 
 let name = ref('');
 
-//storing the category's name
-const getCategoryInfo = () => {
-    name.value = ref(storedCategory.name);
-}
-
 watch(() => {
     if (props.modalVisible) {
-        getCategoryInfo()
+        //storing the category's name
+        name.value = ref(storedCategory.name);
+
     }
 })
+
 
 //put request
 
@@ -59,14 +57,16 @@ const putCategory = (async (id) => {
                 name: name.value.value
             }).then(response => {
                 console.log(response.data.message)
+                alert(response.data.message)
+            }).then(response => {
+                console.log(response.data.message)
             }).catch(error => console.log("there was an error updating the category: ", error))
+            reset();
+            emits("getCategories", "clickEdit");
+            props.modalVisible()
 
         } catch (error) {
             console.log('Error al editar la categoria', error);
-        } finally {
-            alert('La categoria se modifico');
-            reset();
-            emits("getCategories", "clickEdit");
         }
 })
 

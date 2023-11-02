@@ -27,16 +27,13 @@
       <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">Pedido
       </div>
     </div>
-    <CategoryModal />
-    
-    
   </main>
 </template>
 
 <script setup>
   import TableProducts from '@/components/adminComponents/TableProducts';
   import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
-  import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
+
   
 </script>
 

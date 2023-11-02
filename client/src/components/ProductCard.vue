@@ -1,13 +1,14 @@
 <template>
   <div class="card custom-card">
-    <!-- <img :src="props.image" class="card-img-top custom-img" alt="comida">  -->
-    <img src="https://kingspizzapronto.com/wp-content/uploads/2018/09/Pizza-7_19_180446-900x900.jpg"
-      class="card-img-top custom-img" alt="comida">
+     <img :src= "props.inmage" class="card-img-top custom-img" alt="comida"> 
+    <!-- <img src="@/assets/products/empanada1.jpg"
+      class="card-img-top custom-img" alt="comida">-->
     <div class="card-body">
       <h5 class="card-title">{{ props.name }}</h5>
       <p class="card-text">{{ props.description }}</p>
       <p class="card-text">{{ props.cooking_time }} min para retirar </p>
       <b>$ {{ props.price }}</b>
+      {{props.image}} 
     </div>
     <button @click.prevent="AddCarrito(props.id)" class="btn btn-secondary">Agregar al carrito</button>
   </div>
@@ -28,7 +29,7 @@ const props = defineProps(
     price: Number,
     id_category: Number,
     cooking_time: Number,
-    image: Image
+    image: String
   },
 )
 
