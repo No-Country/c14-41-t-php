@@ -18,7 +18,7 @@ class RestaurantSeeder extends Seeder
             "name" => "Take Food",
             "direction" => "223 Baker street",
             "phone" => 011123456,
-            "description" => "casa de comidas"
+            "description" => "Casa de comidas"
         ]);
     }
 }

@@ -46,7 +46,7 @@
 <style scoped>
 .main-container {
   background-color: grey;
-  min-height: 100vw;
+  padding-bottom: 5rem;
 }
 .sty {
   justify-content: space-between;
@@ -56,5 +56,8 @@
 }
 .sty li button{
   width: 100%;
+}
+.tab-pane{
+  margin: 3rem 0px 3rem 0;
 }
 </style>

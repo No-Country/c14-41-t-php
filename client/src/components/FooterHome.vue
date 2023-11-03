@@ -7,6 +7,8 @@
 <style scoped>
 .footer {
     background-color: rgb(33, 37, 41);
+    position: absolute;
+    width: 100%;
 }
 
 p {

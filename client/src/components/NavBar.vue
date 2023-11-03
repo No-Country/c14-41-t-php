@@ -19,16 +19,12 @@
         </div>
         <div class="offcanvas-body">
 
-          <div class="row-colums" style="background-color: azure;">
+          <div class="row-colums" style="background-color: azure; padding: 1rem;">
             <div class="col"><h2>Restaurante: {{props.info.name}}</h2></div>
             <div class="col"><h3>{{props.info.description}}</h3></div>
-            <div class="col">
-              <div class="row">
-                <Span><h5>Dirección: {{props.info.direction}}</h5></Span>
-                <div class="col"><h6>Telefono: {{props.info.phone}}</h6></div>
-                <div class="col"><h6>E-mail: {{props.info.email}}</h6></div>
-              </div>
-            </div>
+            <div class="col"><h5>Dirección: {{props.info.direction}}</h5></div>
+            <div class="col"><h6>Telefono: {{props.info.phone}}</h6></div>
+            <div class="col"><h6>E-mail: {{props.info.email}}</h6></div>
           </div>
 
         </div>
