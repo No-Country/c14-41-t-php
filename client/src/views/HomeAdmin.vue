@@ -35,13 +35,13 @@
 </template>
 
 <script setup>
-import NavBarAdmin from '@/components/adminComponents/NavBarAdmin.vue';
+  import NavBarAdmin from '@/components/adminComponents/NavBarAdmin.vue';
   import FooterHome from '@/components/FooterHome.vue';
   import TableProducts from '@/components/adminComponents/TableProducts';
   import PrincipalPage from '@/components/adminComponents/PrincipalPage.vue';
   import CategoryModal from '@/components/adminComponents/CategoryModal.vue'
   
-</script>
+  </script>
 
 <style scoped>
 .main-container {

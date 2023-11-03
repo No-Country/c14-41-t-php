@@ -19,29 +19,16 @@
         </div>
         <div class="offcanvas-body">
 
-          <div class="row-colums">
-            <div class="col">Nombre</div>
-            <div class="col">descripción</div>
+          <div class="row-colums" style="background-color: azure;">
+            <div class="col"><h2>Restaurante: {{props.info.name}}</h2></div>
+            <div class="col"><h3>{{props.info.description}}</h3></div>
             <div class="col">
               <div class="row">
-                <Span>Contacto / Dirección</Span>
-                <div class="col">telefono</div>
-                <div class="col">mail</div>
-                <div class="col">redes sociales</div>
+                <Span><h5>Dirección: {{props.info.direction}}</h5></Span>
+                <div class="col"><h6>Telefono: {{props.info.phone}}</h6></div>
+                <div class="col"><h6>E-mail: {{props.info.email}}</h6></div>
               </div>
             </div>
-          </div>
-
-          <div class="dropdown mt-3">
-            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-              data-bs-toggle="dropdown">
-              Nuestas opciones
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-              <li><a class="dropdown-item" href="#">Menu 1</a></li>
-              <li><a class="dropdown-item" href="#">Menu 2</a></li>
-              <li><a class="dropdown-item" href="#">menu 3</a></li>
-            </ul>
           </div>
 
         </div>
@@ -66,6 +53,14 @@
 
 <script setup>
 import UserLoged from '@/components/UserLoged.vue';
+import { defineProps } from 'vue'
+
+const props = defineProps({
+  info: {
+    type: Object,
+    required: true
+  }
+})
 
 </script>
 
